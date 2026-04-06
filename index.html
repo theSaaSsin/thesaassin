@@ -74,6 +74,7 @@ nav ul li a:hover:after{width:100%}
 .hero-content{max-width:1000px;margin:0 auto;position:relative;z-index:2}
 .hero p{font-size:1.3rem;margin-bottom:30px;max-width:650px;margin-left:auto;margin-right:auto;color:#e0e0e0}
 .hero-btns{display:flex;justify-content:center;gap:20px;margin-top:30px;flex-wrap:wrap}
+.hero-hook{font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.18em;color:var(--accent);margin-bottom:16px;opacity:.9}
 .hero-tags{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:30px}
 .hero-tag{background:rgba(255,42,42,0.08);border:1px solid rgba(255,42,42,0.2);color:var(--text-secondary);padding:6px 16px;border-radius:20px;font-size:.82rem;letter-spacing:.04em}
 
@@ -546,21 +547,22 @@ a,button{cursor:none !important}
 <section class="hero" role="main">
   <div class="container">
     <div class="hero-content">
+      <p class="hero-hook">Stop Losing Clients to Broken Systems</p>
       <h1 class="hero-headline">
-        <span class="headline-main">Websites. Automation. Lead Systems</span>
-        <br><span class="headline-sub">— Built to Scale Your Business From Day One</span>
+        <span class="headline-main">We Build the Machine.</span>
+        <br><span class="headline-sub">You Close the Deals.</span>
       </h1>
-      <p>Whether you're a startup finding your footing or an established business ready to scale — we build the systems that turn effort into revenue, automatically.</p>
+      <p>Automated websites, CRM pipelines and lead systems that fill your calendar and run your business — without you lifting a finger. From £97. Live in 14 days.</p>
       <div class="hero-btns">
-        <a href="https://calendly.com/thesaassin/build-your-system" class="btn" target="_blank" rel="noopener noreferrer">Build Your System Free</a>
-        <a href="https://thesaassin.gumroad.com/" class="btn btn-outline" target="_blank" rel="noopener noreferrer">Visit Store</a>
+        <a href="https://calendly.com/thesaassin/build-your-system" class="btn" target="_blank" rel="noopener noreferrer">🚀 Get My Free System Plan</a>
+        <a href="https://thesaassin.gumroad.com/" class="btn btn-outline" target="_blank" rel="noopener noreferrer">Browse Templates</a>
       </div>
       <div class="hero-tags">
-        <span class="hero-tag">✦ Web Design</span>
-        <span class="hero-tag">✦ Automation</span>
-        <span class="hero-tag">✦ CRM Setup</span>
+        <span class="hero-tag">✦ 14-Day Delivery</span>
+        <span class="hero-tag">✦ From £97</span>
+        <span class="hero-tag">✦ 100% Done-For-You</span>
+        <span class="hero-tag">✦ CRM + Automation</span>
         <span class="hero-tag">✦ Lead Generation</span>
-        <span class="hero-tag">✦ Done-For-You Systems</span>
         <span class="hero-tag">✦ Startups Welcome</span>
       </div>
     </div>
@@ -985,10 +987,32 @@ a,button{cursor:none !important}
 <div id="ss-chatbot" aria-label="TheSaaSsin chat assistant">
   <div class="ss-chat-panel" id="ss-chat-panel" role="dialog" aria-modal="true" aria-label="Chat with TheSaaSsin">
     <div class="ss-chat-header">
-      <div class="ss-chat-avatar"><i class="fas fa-robot"></i></div>
+      <div class="ss-chat-avatar">
+        <svg width="32" height="32" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="20" cy="20" r="20" fill="#1a0505"/>
+          <!-- headband -->
+          <path d="M7 15 Q20 3 33 15" fill="#110808" stroke="#ff2a2a" stroke-width="1.2"/>
+          <!-- headband knot tails -->
+          <path d="M33 15 Q36 18 35 22 M7 15 Q4 18 5 22" fill="none" stroke="#ff2a2a" stroke-width="1"/>
+          <!-- face wrap / mask -->
+          <rect x="6" y="15" width="28" height="14" rx="4" fill="#110808" stroke="#ff2a2a" stroke-width="0.8"/>
+          <!-- eyes glowing red -->
+          <ellipse cx="14.5" cy="22" rx="3.2" ry="3" fill="#080505"/>
+          <ellipse cx="25.5" cy="22" rx="3.2" ry="3" fill="#080505"/>
+          <ellipse cx="14.5" cy="22" rx="1.6" ry="1.8" fill="#ff2a2a" opacity="0.95"/>
+          <ellipse cx="25.5" cy="22" rx="1.6" ry="1.8" fill="#ff2a2a" opacity="0.95"/>
+          <!-- eye shine -->
+          <circle cx="15.3" cy="21.2" r=".5" fill="rgba(255,255,255,0.5)"/>
+          <circle cx="26.3" cy="21.2" r=".5" fill="rgba(255,255,255,0.5)"/>
+          <!-- chin wrap -->
+          <path d="M6 29 Q13 37 20 38 Q27 37 34 29" fill="#110808" stroke="#ff2a2a" stroke-width="0.8"/>
+          <!-- body arms suggestion -->
+          <path d="M9 28 L7 36 M31 28 L33 36" stroke="#ff2a2a" stroke-width="1.4" stroke-linecap="round"/>
+        </svg>
+      </div>
       <div class="ss-chat-header-info">
-        <div class="ss-chat-header-name">TheSaaSsin Bot</div>
-        <div class="ss-chat-header-status">● Online — here to help</div>
+        <div class="ss-chat-header-name">TheSaaSsin</div>
+        <div class="ss-chat-header-status">🔴 Online — no system is safe from us</div>
       </div>
       <button class="ss-chat-close" id="ss-chat-close" aria-label="Close chat">&times;</button>
     </div>
@@ -1000,7 +1024,15 @@ a,button{cursor:none !important}
     <div class="ss-chat-powered">Ask me anything about our services</div>
   </div>
   <button class="ss-chat-toggle" id="ss-chat-toggle" aria-label="Open chat" aria-expanded="false">
-    <i class="fas fa-robot"></i>
+    <svg width="26" height="26" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="20" cy="20" r="20" fill="rgba(255,255,255,0.1)"/>
+      <path d="M7 15 Q20 3 33 15" fill="none" stroke="#fff" stroke-width="1.2"/>
+      <rect x="6" y="15" width="28" height="14" rx="4" fill="rgba(255,255,255,0.12)" stroke="#fff" stroke-width="0.8"/>
+      <ellipse cx="14.5" cy="22" rx="2.8" ry="2.6" fill="#fff" opacity="0.9"/>
+      <ellipse cx="25.5" cy="22" rx="2.8" ry="2.6" fill="#fff" opacity="0.9"/>
+      <path d="M6 29 Q13 37 20 38 Q27 37 34 29" fill="none" stroke="#fff" stroke-width="0.8"/>
+      <path d="M9 28 L7 36 M31 28 L33 36" stroke="#fff" stroke-width="1.2" stroke-linecap="round"/>
+    </svg>
   </button>
 </div>
 
@@ -1052,12 +1084,37 @@ a,button{cursor:none !important}
 
 // ===================== MEGA MENU =====================
 (function(){
+  // On page load, ensure every mega-menu has its first item + panel active
+  document.querySelectorAll('.mega-dropdown').forEach(function(dropdown){
+    var firstItem=dropdown.querySelector('.menu-item');
+    var firstContent=firstItem&&document.getElementById(firstItem.dataset.target);
+    if(firstItem) firstItem.classList.add('active');
+    if(firstContent) firstContent.classList.add('active');
+
+    // When user enters the dropdown wrapper, reset to first item so it's never blank
+    dropdown.addEventListener('mouseenter',function(){
+      var allItems=dropdown.querySelectorAll('.menu-item');
+      var allContents=dropdown.querySelectorAll('.menu-content');
+      var hasActive=false;
+      allItems.forEach(function(i){if(i.classList.contains('active'))hasActive=true;});
+      if(!hasActive){
+        allItems.forEach(function(i){i.classList.remove('active');});
+        allContents.forEach(function(c){c.classList.remove('active');});
+        if(allItems[0]) allItems[0].classList.add('active');
+        var t=allItems[0]&&document.getElementById(allItems[0].dataset.target);
+        if(t) t.classList.add('active');
+      }
+    });
+  });
+
   var items=document.querySelectorAll('.menu-item');
   var contents=document.querySelectorAll('.menu-content');
   items.forEach(function(item){
     item.addEventListener('mouseenter',function(){
-      items.forEach(function(i){i.classList.remove('active');});
-      contents.forEach(function(c){c.classList.remove('active');});
+      // Only deactivate items within the same dropdown
+      var parent=item.closest('.mega-dropdown');
+      parent.querySelectorAll('.menu-item').forEach(function(i){i.classList.remove('active');});
+      parent.querySelectorAll('.menu-content').forEach(function(c){c.classList.remove('active');});
       item.classList.add('active');
       var t=document.getElementById(item.dataset.target);
       if(t) t.classList.add('active');
@@ -1065,8 +1122,9 @@ a,button{cursor:none !important}
     item.addEventListener('keydown',function(e){
       if(e.key==='Enter'||e.key===' '){
         e.preventDefault();
-        items.forEach(function(i){i.classList.remove('active');});
-        contents.forEach(function(c){c.classList.remove('active');});
+        var parent=item.closest('.mega-dropdown');
+        parent.querySelectorAll('.menu-item').forEach(function(i){i.classList.remove('active');});
+        parent.querySelectorAll('.menu-content').forEach(function(c){c.classList.remove('active');});
         item.classList.add('active');
         var t=document.getElementById(item.dataset.target);
         if(t) t.classList.add('active');
@@ -1284,7 +1342,7 @@ a,button{cursor:none !important}
     if (!chatStarted) {
       chatStarted = true;
       setTimeout(function() {
-        addMsg("Hey! I'm the TheSaaSsin bot 👋 Whether you're starting from scratch or looking to scale — I can help point you in the right direction. What kind of business do you run?", 'bot');
+        addMsg("👁️ You found us. Whether you're starting from scratch or ready to scale — tell me about your business and I'll point you to exactly what you need.", 'bot');
       }, 300);
     }
     inputEl.focus();
