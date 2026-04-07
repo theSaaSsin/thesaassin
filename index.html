@@ -333,6 +333,10 @@ a,button{cursor:none !important}
 @media(max-width:700px) {
   .hero-video-wrap { border-radius: 10px; margin-bottom: 32px; }
 }
+
+/* ── Video hover controls ── */
+.hero-video-wrap{position:relative;}
+.hero-video-wrap:hover #hvBar{opacity:1!important;}
 </style>
 </head>
 <body>
@@ -555,7 +559,7 @@ a,button{cursor:none !important}
           </div>
         </li>
 
-        <li><a href="https://calendly.com/thesaassin/build-your-system" target="_blank" rel="noopener noreferrer" class="nav-cta">Book Free Call</a></li>
+        <li><a href="index_html-Gamified_Learning.html" class="nav-cta">Simulate Your Business now</a></li>
       </ul>
     </nav>
     <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
@@ -569,13 +573,20 @@ a,button{cursor:none !important}
   <div class="container">
     <div class="hero-content">
 
-      <div class="hero-video-wrap">
-        <video controls preload="autoplay" playsinline muted
+      <div class="hero-video-wrap" id="hvWrap">
+        <video id="hvVid" preload="auto" playsinline autoplay
                aria-label="TheSaaSsin promotional video"
-               style="display:block;width:100%;height:auto">
-          <source src="./thesaassin-promo.mp4" type="video/mp4">
-          <source src="./thesaassin-final.mp4" type="video/mp4">
+               style="display:block;width:100%;height:auto;cursor:pointer">
+          <source src="https://raw.githubusercontent.com/theSaaSsin/thesaassin/main/thesaassin-promo.mp4" type="video/mp4">
         </video>
+        <!-- Video controls bar -->
+        <div id="hvBar" style="position:absolute;bottom:0;left:0;right:0;padding:10px 14px;background:linear-gradient(to top,rgba(0,0,0,0.75),transparent);display:flex;align-items:center;gap:10px;opacity:0;transition:opacity .25s;z-index:10;">
+          <button id="hvPlay" aria-label="Play/Pause" style="background:none;border:none;cursor:pointer;padding:4px;color:#fff;font-size:1.1rem;line-height:1;"><i class="fas fa-pause" id="hvPlayIco"></i></button>
+          <div id="hvProg" style="flex:1;height:4px;background:rgba(255,255,255,0.25);border-radius:2px;cursor:pointer;position:relative;">
+            <div id="hvFill" style="height:100%;background:#ff2a2a;border-radius:2px;width:0%;pointer-events:none;"></div>
+          </div>
+          <button id="hvMute" aria-label="Mute/Unmute" style="background:none;border:none;cursor:pointer;padding:4px;color:#fff;font-size:1.1rem;line-height:1;"><i class="fas fa-volume-up" id="hvMuteIco"></i></button>
+        </div>
       </div>
 
       <p class="hero-hook">Stop Losing Clients to Broken Systems</p>
@@ -1390,5 +1401,59 @@ a,button{cursor:none !important}
   if (inputEl) inputEl.addEventListener('keydown', function(e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(inputEl.value); } });
 })();
 </script>
+
+<script>
+(function(){
+  var v = document.getElementById('hvVid');
+  var bar = document.getElementById('hvBar');
+  var playBtn = document.getElementById('hvPlay');
+  var playIco = document.getElementById('hvPlayIco');
+  var muteBtn = document.getElementById('hvMute');
+  var muteIco = document.getElementById('hvMuteIco');
+  var fill = document.getElementById('hvFill');
+  var prog = document.getElementById('hvProg');
+  var wrap = document.getElementById('hvWrap');
+  if(!v) return;
+
+  // Autoplay with audio - unmuted by default
+  v.muted = false;
+  v.play().catch(function(){
+    // Browser blocked autoplay with audio - try muted
+    v.muted = true;
+    v.play().catch(function(){});
+    if(muteIco){ muteIco.className='fas fa-volume-mute'; }
+  });
+
+  // Show bar on hover
+  wrap.addEventListener('mouseenter',function(){ bar.style.opacity='1'; });
+  wrap.addEventListener('mouseleave',function(){ bar.style.opacity='0'; });
+
+  // Play/pause toggle (click video or button)
+  function togglePlay(){
+    if(v.paused){ v.play(); playIco.className='fas fa-pause'; }
+    else{ v.pause(); playIco.className='fas fa-play'; }
+  }
+  v.addEventListener('click', togglePlay);
+  playBtn.addEventListener('click', function(e){ e.stopPropagation(); togglePlay(); });
+
+  // Mute toggle
+  muteBtn.addEventListener('click', function(e){
+    e.stopPropagation();
+    v.muted = !v.muted;
+    muteIco.className = v.muted ? 'fas fa-volume-mute' : 'fas fa-volume-up';
+  });
+
+  // Progress bar
+  v.addEventListener('timeupdate',function(){
+    if(v.duration){ fill.style.width=((v.currentTime/v.duration)*100)+'%'; }
+  });
+  prog.addEventListener('click',function(e){
+    var rect=prog.getBoundingClientRect();
+    var pct=(e.clientX-rect.left)/rect.width;
+    v.currentTime=pct*v.duration;
+  });
+})();
+</script>
+
 </body>
 </html>
