@@ -312,6 +312,27 @@ a,button{cursor:none !important}
   .ss-cases-grid{grid-template-columns:1fr}
   .who-grid{grid-template-columns:1fr}
 }
+
+/* ── Hero Video Player ─────────────────────────────────────────── */
+.hero-video-wrap {
+  width: min(100%, 900px);
+  margin: 0 auto 48px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 0 0 1px rgba(255,42,42,0.25), 0 24px 80px rgba(0,0,0,0.7);
+  position: relative;
+}
+.hero-video-wrap video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16/9;
+  object-fit: contain;
+}
+@media(max-width:700px) {
+  .hero-video-wrap { border-radius: 10px; margin-bottom: 32px; }
+}
 </style>
 </head>
 <body>
@@ -547,6 +568,16 @@ a,button{cursor:none !important}
 <section class="hero" role="main">
   <div class="container">
     <div class="hero-content">
+
+      <div class="hero-video-wrap">
+        <video controls preload="metadata" playsinline muted
+               aria-label="TheSaaSsin promotional video"
+               style="display:block;width:100%;height:auto">
+          <source src="./thesaassin-promo.mp4" type="video/mp4">
+          <source src="./thesaassin-final.mp4" type="video/mp4">
+        </video>
+      </div>
+
       <p class="hero-hook">Stop Losing Clients to Broken Systems</p>
       <h1 class="hero-headline">
         <span class="headline-main">We Build the Machine.</span>
