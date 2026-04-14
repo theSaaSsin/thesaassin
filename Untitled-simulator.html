@@ -260,8 +260,9 @@
   .text-orange-400, .text-yellow-400 { color: #ff9b9b !important; }
 
   /* Homepage custom cursor */
-  body.cursor-ready { cursor: none; }
-  a, button { cursor: none !important; }
+  body.cursor-ready,
+  body.cursor-ready a,
+  body.cursor-ready button { cursor: none !important; }
   .laser-dot {
     position: fixed;
     width: 10px;
@@ -1277,7 +1278,7 @@ window.console = new Proxy(console, {
 // DESKTOP LASER CURSOR
 // ============================================================
 (function(){
-  const isMobile = window.innerWidth < 768 || ('ontouchstart' in window);
+  const isMobile = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
   if (isMobile) return;
   const laser = document.getElementById('laser');
   if (!laser) return;
