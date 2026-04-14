@@ -169,6 +169,57 @@
     color: #ffb3b3;
   }
 
+  .system-flow-card {
+    position: relative;
+    overflow: hidden;
+  }
+  .system-flow-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255,42,42,0.55), rgba(255,122,122,0.12));
+  }
+  .system-flow-reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+  }
+  .system-flow-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .system-flow-step {
+    position: relative;
+    padding-left: 34px;
+  }
+  .system-flow-step::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 11px;
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    background: #ff4d4d;
+    box-shadow: 0 0 10px rgba(255,77,77,0.35);
+  }
+  .system-flow-step::after {
+    content: '';
+    position: absolute;
+    left: 14px;
+    top: 28px;
+    bottom: -12px;
+    width: 2px;
+    background: linear-gradient(180deg, rgba(255,77,77,0.28), rgba(255,77,77,0));
+  }
+  .system-flow-step:last-child::after { display: none; }
+  .system-flow-arrow {
+    min-height: 40px;
+  }
+
   .sim-nav-cta {
     display: inline-flex;
     align-items: center;
@@ -668,6 +719,10 @@
           </div>
         </div>
 
+        <div id="system-flow-slot" class="mt-6">
+          <!-- filled by JS -->
+        </div>
+
         <div class="mt-6 p-4 rounded-xl" style="background: rgba(255,42,42,0.08); border: 1px solid rgba(255,42,42,0.2);">
           <div class="text-xs text-red-400 font-semibold mb-2">WHAT YOU GET</div>
           <div id="plan-features" class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm"></div>
@@ -726,6 +781,32 @@ const scenarios = {
   freelance: { leads: 15, admin: 15, conv: 30, acv: 800, rate: 75, followup: 24 },
   startup: { leads: 5, admin: 10, conv: 15, acv: 300, rate: 40, followup: 36 },
   agency: { leads: 40, admin: 25, conv: 20, acv: 1500, rate: 100, followup: 12 }
+};
+
+const SYSTEM_FLOW_DEFS = {
+  leadAcquisition: {
+    eyebrow: 'System Flow',
+    title: 'Lead Acquisition System',
+    problem: {
+      label: 'Problem',
+      title: 'No clients coming in',
+      detail: 'Your lead flow is inconsistent, manual, and too dependent on luck.'
+    },
+    processLabel: 'System Process',
+    steps: [
+      'Capture leads from forms, Google, and social channels',
+      'Filter and score the strongest opportunities automatically',
+      'Trigger outreach and follow-up without manual chasing',
+      'Push every lead into a trackable CRM pipeline'
+    ],
+    output: {
+      label: 'Output',
+      title: 'Consistent incoming opportunities',
+      detail: 'More qualified leads, faster response times, and less wasted effort.'
+    },
+    whyLabel: 'Why this helps',
+    why: 'Instead of relying on random enquiries, this system creates a repeatable acquisition flow that captures, qualifies, triggers action, and keeps every opportunity visible.'
+  }
 };
 
 function loadScenario(key) {
@@ -907,6 +988,79 @@ function updateFlowTab(m) {
   `).join('');
 }
 
+function renderSystemFlow(key, m) {
+  const flow = SYSTEM_FLOW_DEFS[key];
+  const root = document.getElementById('system-flow-slot');
+  if (!flow || !root) return;
+
+  const monthlyQualified = Math.max(m.newClients, m.currentClients + Math.max(1, m.extraClients));
+  const impactLine = `Based on your current inputs, this system is designed to move you from ${m.currentClients} to ${monthlyQualified} potential clients per month while removing manual lead chasing.`;
+
+  root.innerHTML = `
+    <section class="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm">
+      <div class="system-flow-reveal mb-4 flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-red-400">${flow.eyebrow}</p>
+          <h3 class="text-xl font-black text-slate-100">${flow.title}</h3>
+        </div>
+        <span class="rounded-full border border-red-500/30 bg-red-500/10 px-3 py-1 text-xs font-semibold text-red-300">
+          Built to explain the system fast
+        </span>
+      </div>
+
+      <div class="grid gap-3 md:grid-cols-[minmax(0,1fr)_42px_minmax(0,1.2fr)_42px_minmax(0,1fr)] md:items-stretch">
+        <div class="system-flow-card system-flow-reveal rounded-xl border border-white/10 bg-black/20 p-4">
+          <p class="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-400">${flow.problem.label}</p>
+          <div class="text-lg font-bold text-white">${flow.problem.title}</div>
+          <p class="mt-2 text-sm text-slate-400">${flow.problem.detail}</p>
+        </div>
+
+        <div class="system-flow-arrow system-flow-reveal flex items-center justify-center text-red-300/80 font-black">
+          <span class="md:hidden text-xl">↓</span>
+          <span class="hidden md:inline text-2xl">→</span>
+        </div>
+
+        <div class="system-flow-card system-flow-reveal rounded-xl border border-red-500/20 bg-red-500/5 p-4">
+          <p class="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-400">${flow.processLabel}</p>
+          <div class="space-y-3">
+            ${flow.steps.map((step, index) => `
+              <div class="system-flow-step system-flow-reveal rounded-lg border border-white/10 bg-white/5 px-3 py-3 text-sm text-slate-200">
+                <span class="block text-xs font-semibold uppercase tracking-wide text-red-300/80">Step ${index + 1}</span>
+                <span class="mt-1 block">${step}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <div class="system-flow-arrow system-flow-reveal flex items-center justify-center text-red-300/80 font-black">
+          <span class="md:hidden text-xl">↓</span>
+          <span class="hidden md:inline text-2xl">→</span>
+        </div>
+
+        <div class="system-flow-card system-flow-reveal rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-4">
+          <p class="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-400">${flow.output.label}</p>
+          <div class="text-lg font-bold text-white">${flow.output.title}</div>
+          <p class="mt-2 text-sm text-slate-400">${flow.output.detail}</p>
+        </div>
+      </div>
+
+      <div class="system-flow-reveal mt-4 rounded-xl border border-white/10 bg-black/20 p-4">
+        <p class="text-xs font-semibold uppercase tracking-wide text-slate-400">${flow.whyLabel}</p>
+        <p class="mt-2 text-sm text-slate-300">${flow.why}</p>
+        <p class="mt-3 text-xs text-slate-500">${impactLine}</p>
+      </div>
+    </section>
+  `;
+
+  requestAnimationFrame(() => {
+    const items = root.querySelectorAll('.system-flow-reveal');
+    items.forEach((el) => el.classList.remove('is-visible'));
+    items.forEach((el, index) => {
+      setTimeout(() => el.classList.add('is-visible'), 70 * index);
+    });
+  });
+}
+
 function updatePlanTab(m) {
   const plans = {
     kickstart: {
@@ -966,6 +1120,7 @@ function updatePlanTab(m) {
   `).join('');
 
   updateDiagnosisOutput(m);
+  renderSystemFlow('leadAcquisition', m);
 }
 
 function updateDiagnosisOutput(m) {
