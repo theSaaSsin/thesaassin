@@ -322,30 +322,160 @@ footer::after{content:"";position:absolute;top:0;left:0;width:100%;height:2px;ba
   .who-grid{grid-template-columns:1fr}
 }
 
-/* ── Hero Video Player ─────────────────────────────────────────── */
+/* ── Hero System Preview ───────────────────────────────────────── */
 .hero-video-wrap {
   width: min(100%, 900px);
   margin: 0 auto 48px;
   border-radius: 14px;
   overflow: hidden;
-  background: #000;
+  background:
+    radial-gradient(circle at top left, rgba(255,42,42,0.2), transparent 35%),
+    linear-gradient(180deg, rgba(17,17,24,0.98), rgba(10,10,15,0.98));
   box-shadow: 0 0 0 1px rgba(255,42,42,0.25), 0 24px 80px rgba(0,0,0,0.7);
   position: relative;
+  padding: 34px;
 }
-.hero-video-wrap video {
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 16/9;
-  object-fit: contain;
+.hero-system-preview {
+  display: grid;
+  gap: 18px;
+}
+.hero-preview-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.hero-preview-kicker {
+  font-size: .75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .18em;
+  color: var(--accent);
+  opacity: .95;
+}
+.hero-preview-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 999px;
+  font-size: .82rem;
+  color: var(--text-secondary);
+  background: rgba(255,255,255,0.04);
+}
+.hero-preview-grid {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) 52px minmax(0,1.2fr) 52px minmax(0,1fr);
+  gap: 18px;
+  align-items: stretch;
+}
+.hero-preview-card {
+  position: relative;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 18px;
+  padding: 22px;
+  background: rgba(255,255,255,0.04);
+}
+.hero-preview-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255,42,42,0.7), rgba(255,42,42,0));
+}
+.hero-preview-card.problem { background: rgba(255,255,255,0.03); }
+.hero-preview-card.system { background: rgba(255,42,42,0.07); border-color: rgba(255,42,42,0.22); }
+.hero-preview-card.result { background: rgba(34,197,94,0.08); border-color: rgba(34,197,94,0.18); }
+.hero-preview-label {
+  font-size: .72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+.hero-preview-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 10px;
+}
+.hero-preview-copy {
+  font-size: .98rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+}
+.hero-preview-steps {
+  display: grid;
+  gap: 12px;
+}
+.hero-preview-step {
+  position: relative;
+  padding: 12px 14px 12px 44px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.04);
+  color: var(--text);
+  font-size: .92rem;
+  line-height: 1.5;
+}
+.hero-preview-step::before {
+  content: "";
+  position: absolute;
+  left: 16px;
+  top: 17px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 12px rgba(255,42,42,0.45);
+}
+.hero-preview-step::after {
+  content: "";
+  position: absolute;
+  left: 20px;
+  top: 34px;
+  bottom: -12px;
+  width: 2px;
+  background: linear-gradient(180deg, rgba(255,42,42,0.3), rgba(255,42,42,0));
+}
+.hero-preview-step:last-child::after { display: none; }
+.hero-preview-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.9rem;
+  color: rgba(255,107,107,0.85);
+}
+.hero-preview-foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.hero-preview-tag {
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: var(--text-secondary);
+  font-size: .82rem;
+  font-weight: 600;
 }
 @media(max-width:700px) {
-  .hero-video-wrap { border-radius: 10px; margin-bottom: 32px; }
+  .hero-video-wrap { border-radius: 10px; margin-bottom: 32px; padding: 22px; }
+  .hero-preview-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .hero-preview-arrow {
+    min-height: 34px;
+    font-size: 1.35rem;
+  }
 }
-
-/* ── Video hover controls ── */
-.hero-video-wrap{position:relative;}
-.hero-video-wrap:hover #hvBar{opacity:1!important;}
 </style>
 </head>
 <body>
@@ -582,18 +712,46 @@ footer::after{content:"";position:absolute;top:0;left:0;width:100%;height:2px;ba
     <div class="hero-content">
 
       <div class="hero-video-wrap" id="hvWrap">
-        <video id="hvVid" preload="auto" playsinline autoplay
-               aria-label="TheSaaSsin promotional video"
-               style="display:block;width:100%;height:auto;cursor:pointer">
-          <source src="https://raw.githubusercontent.com/theSaaSsin/thesaassin/main/thesaassin-promo.mp4" type="video/mp4">
-        </video>
-        <!-- Video controls bar -->
-        <div id="hvBar" style="position:absolute;bottom:0;left:0;right:0;padding:10px 14px;background:linear-gradient(to top,rgba(0,0,0,0.75),transparent);display:flex;align-items:center;gap:10px;opacity:0;transition:opacity .25s;z-index:10;">
-          <button id="hvPlay" aria-label="Play/Pause" style="background:none;border:none;cursor:pointer;padding:4px;color:#fff;font-size:1.1rem;line-height:1;"><i class="fas fa-pause" id="hvPlayIco"></i></button>
-          <div id="hvProg" style="flex:1;height:4px;background:rgba(255,255,255,0.25);border-radius:2px;cursor:pointer;position:relative;">
-            <div id="hvFill" style="height:100%;background:#ff2a2a;border-radius:2px;width:0%;pointer-events:none;"></div>
+        <div class="hero-system-preview" aria-label="Example modular system preview">
+          <div class="hero-preview-top">
+            <div class="hero-preview-kicker">Tailored System Preview</div>
+            <div class="hero-preview-chip"><i class="fas fa-diagram-project"></i> Diagnosis -> System -> Result</div>
           </div>
-          <button id="hvMute" aria-label="Mute/Unmute" style="background:none;border:none;cursor:pointer;padding:4px;color:#fff;font-size:1.1rem;line-height:1;"><i class="fas fa-volume-up" id="hvMuteIco"></i></button>
+
+          <div class="hero-preview-grid">
+            <div class="hero-preview-card problem">
+              <div class="hero-preview-label">Problem</div>
+              <div class="hero-preview-title">No clients and no time</div>
+              <div class="hero-preview-copy">Leads are inconsistent, follow-up is manual, and content or outreach keeps getting pushed back.</div>
+            </div>
+
+            <div class="hero-preview-arrow">→</div>
+
+            <div class="hero-preview-card system">
+              <div class="hero-preview-label">Tailored System</div>
+              <div class="hero-preview-steps">
+                <div class="hero-preview-step">Lead capture from forms, Google, and social channels</div>
+                <div class="hero-preview-step">Filtering and scoring to prioritise the best opportunities</div>
+                <div class="hero-preview-step">Automated outreach and follow-up so nothing gets missed</div>
+                <div class="hero-preview-step">CRM pipeline to track everything in one place</div>
+              </div>
+            </div>
+
+            <div class="hero-preview-arrow">→</div>
+
+            <div class="hero-preview-card result">
+              <div class="hero-preview-label">Result</div>
+              <div class="hero-preview-title">Consistent opportunities</div>
+              <div class="hero-preview-copy">You stop guessing, stop chasing manually, and get a system built around the bottleneck that is actually slowing you down.</div>
+            </div>
+          </div>
+
+          <div class="hero-preview-foot">
+            <span class="hero-preview-tag">Lead generation engine</span>
+            <span class="hero-preview-tag">Outreach automation</span>
+            <span class="hero-preview-tag">Follow-up system</span>
+            <span class="hero-preview-tag">CRM pipeline</span>
+          </div>
         </div>
       </div>
 
@@ -1418,59 +1576,6 @@ footer::after{content:"";position:absolute;top:0;left:0;width:100%;height:2px;ba
   if (closeBtn) closeBtn.addEventListener('click', closeChat);
   if (sendBtn) sendBtn.addEventListener('click', function() { send(inputEl.value); });
   if (inputEl) inputEl.addEventListener('keydown', function(e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(inputEl.value); } });
-})();
-</script>
-
-<script>
-(function(){
-  var v = document.getElementById('hvVid');
-  var bar = document.getElementById('hvBar');
-  var playBtn = document.getElementById('hvPlay');
-  var playIco = document.getElementById('hvPlayIco');
-  var muteBtn = document.getElementById('hvMute');
-  var muteIco = document.getElementById('hvMuteIco');
-  var fill = document.getElementById('hvFill');
-  var prog = document.getElementById('hvProg');
-  var wrap = document.getElementById('hvWrap');
-  if(!v) return;
-
-  // Autoplay with audio - unmuted by default
-  v.muted = false;
-  v.play().catch(function(){
-    // Browser blocked autoplay with audio - try muted
-    v.muted = true;
-    v.play().catch(function(){});
-    if(muteIco){ muteIco.className='fas fa-volume-mute'; }
-  });
-
-  // Show bar on hover
-  wrap.addEventListener('mouseenter',function(){ bar.style.opacity='1'; });
-  wrap.addEventListener('mouseleave',function(){ bar.style.opacity='0'; });
-
-  // Play/pause toggle (click video or button)
-  function togglePlay(){
-    if(v.paused){ v.play(); playIco.className='fas fa-pause'; }
-    else{ v.pause(); playIco.className='fas fa-play'; }
-  }
-  v.addEventListener('click', togglePlay);
-  playBtn.addEventListener('click', function(e){ e.stopPropagation(); togglePlay(); });
-
-  // Mute toggle
-  muteBtn.addEventListener('click', function(e){
-    e.stopPropagation();
-    v.muted = !v.muted;
-    muteIco.className = v.muted ? 'fas fa-volume-mute' : 'fas fa-volume-up';
-  });
-
-  // Progress bar
-  v.addEventListener('timeupdate',function(){
-    if(v.duration){ fill.style.width=((v.currentTime/v.duration)*100)+'%'; }
-  });
-  prog.addEventListener('click',function(e){
-    var rect=prog.getBoundingClientRect();
-    var pct=(e.clientX-rect.left)/rect.width;
-    v.currentTime=pct*v.duration;
-  });
 })();
 </script>
 
