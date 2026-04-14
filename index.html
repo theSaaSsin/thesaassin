@@ -920,7 +920,7 @@ footer::after{content:"";position:absolute;top:0;left:0;width:100%;height:2px;ba
       </div>
 
     </div>
-    <p class="price-cta-note">Not sure where to start? <a href="https://calendly.com/thesaassin/build-your-system" target="_blank" rel="noopener noreferrer">Get your system breakdown</a> and I will map the right starting build.</p>
+    <p class="price-cta-note">Not sure where to start? <a href="./Untitled-simulator.html">Get your system mapped</a> first, then book a call if you want me to build it with you.</p>
   </div>
 </section>
 
@@ -1337,12 +1337,12 @@ footer::after{content:"";position:absolute;top:0;left:0;width:100%;height:2px;ba
 (function(){
   'use strict';
 
-  var FALLBACK = "I do not offer fixed packages. I map a tailored system around what you are trying to fix. Share your problem and I will point you to the right first build. Or book here: https://calendly.com/thesaassin/build-your-system";
+  var FALLBACK = "I do not offer fixed packages. I map a tailored system around what you are trying to fix. Start here: ./Untitled-simulator.html. If you want me to build it with you, book here: https://calendly.com/thesaassin/build-your-system";
 
   function getReply(text) {
     var t = text.toLowerCase();
     if (/price|pricing|cost|how much|plan|package|store|template/.test(t)) {
-      return "I do not lead with fixed packages. I diagnose your bottleneck first, then map the smallest system that solves it. Typical builds range from focused (£97+) to advanced multi-layer systems. Book a breakdown: https://calendly.com/thesaassin/build-your-system";
+      return "I do not lead with fixed packages. I diagnose your bottleneck first, then map the smallest system that solves it. Typical builds range from focused (£97+) to advanced multi-layer systems. Start with the simulator: ./Untitled-simulator.html. If you want me to build it with you, book here: https://calendly.com/thesaassin/build-your-system";
     }
     if (/lead|client|bookings|pipeline/.test(t)) {
       return "If your issue is inconsistent clients, I usually start with acquisition + CRM + follow-up automation. Tell me your niche and I will map the exact version for you.";
@@ -1354,7 +1354,7 @@ footer::after{content:"";position:absolute;top:0;left:0;width:100%;height:2px;ba
       return "If time is the bottleneck, I prioritise automation and workflow design first so execution no longer depends on manual effort.";
     }
     if (/book|call|strategy|breakdown/.test(t)) {
-      return "Perfect. Use this link and I will map your system with you: https://calendly.com/thesaassin/build-your-system";
+      return "Perfect. First run your simulation here: ./Untitled-simulator.html. Then if you want, book here and I will build it with you: https://calendly.com/thesaassin/build-your-system";
     }
     return FALLBACK;
   }

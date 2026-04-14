@@ -640,17 +640,44 @@
           <!-- filled by JS -->
         </div>
 
+        <div class="mt-4 p-4 rounded-xl" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+          <div class="text-xs text-red-400 font-semibold mb-2">PROBLEM DETECTED</div>
+          <div id="diag-problem" class="text-sm text-slate-300 font-semibold mb-3">Calculating diagnosis...</div>
+          <div id="diag-reason" class="text-xs text-slate-500 mb-4"></div>
+
+          <div class="text-xs text-red-400 font-semibold mb-2">TAILORED SYSTEM</div>
+          <div class="space-y-2 text-sm">
+            <div class="flex items-start gap-2">
+              <span class="text-slate-500 min-w-24">Acquisition:</span>
+              <span id="diag-acquisition" class="text-slate-300"></span>
+            </div>
+            <div class="flex items-start gap-2">
+              <span class="text-slate-500 min-w-24">Automation:</span>
+              <span id="diag-automation" class="text-slate-300"></span>
+            </div>
+            <div class="flex items-start gap-2">
+              <span class="text-slate-500 min-w-24">Management:</span>
+              <span id="diag-management" class="text-slate-300"></span>
+            </div>
+          </div>
+
+          <div class="mt-4 p-3 rounded-lg text-xs text-slate-400" style="background: rgba(0,0,0,0.2);">
+            <span class="text-slate-200 font-semibold">Expected outcome:</span>
+            <span id="diag-outcome"></span>
+          </div>
+        </div>
+
         <div class="mt-6 p-4 rounded-xl" style="background: rgba(255,42,42,0.08); border: 1px solid rgba(255,42,42,0.2);">
           <div class="text-xs text-red-400 font-semibold mb-2">WHAT YOU GET</div>
           <div id="plan-features" class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm"></div>
         </div>
 
         <div class="mt-4 flex flex-wrap gap-3">
-          <a href="#" class="px-5 py-2 rounded-lg text-sm font-bold text-white" style="background: linear-gradient(135deg,#cc1a1a,#cc1a1a);">
-            🚀 Book Free Strategy Call
+          <a href="https://calendly.com/thesaassin/build-your-system" target="_blank" rel="noopener noreferrer" class="px-5 py-2 rounded-lg text-sm font-bold text-white" style="background: linear-gradient(135deg,#cc1a1a,#cc1a1a);">
+            🚀 Want me to build this for you?
           </a>
-          <a href="#" class="px-5 py-2 rounded-lg text-sm font-semibold text-slate-300 border border-white/10 hover:border-white/20">
-            Browse Templates →
+          <a href="index.html" class="px-5 py-2 rounded-lg text-sm font-semibold text-slate-300 border border-white/10 hover:border-white/20">
+            Back to Homepage →
           </a>
         </div>
       </div>
@@ -936,6 +963,53 @@ function updatePlanTab(m) {
       <div class="text-xs text-slate-400">${t.task}</div>
     </div>
   `).join('');
+
+  updateDiagnosisOutput(m);
+}
+
+function updateDiagnosisOutput(m) {
+  const painPoints = [];
+  if (m.currentClients < 3 || state.leads < 12) painPoints.push('client acquisition gap');
+  if (state.admin > 10) painPoints.push('time pressure from admin load');
+  if (state.followup > 12 || state.conv < 20) painPoints.push('conversion leakage from slow follow-up');
+
+  const hasAcquisitionIssue = m.currentClients < 3 || state.leads < 12;
+  const hasTimeIssue = state.admin > 10;
+  const hasConversionIssue = state.followup > 12 || state.conv < 20;
+
+  const acquisitionModules = hasAcquisitionIssue
+    ? ['Lead Feed Engine', 'Landing + Funnel System', 'Outreach Automation']
+    : ['Opportunity Capture Optimiser', 'Offer Positioning Layer'];
+  const automationModules = hasTimeIssue
+    ? ['Follow-Up Automation', 'CRM Auto-Update Flow', 'Content Assist System']
+    : ['Workflow Quality Checks', 'Reporting Automation'];
+  const managementModules = hasConversionIssue
+    ? ['CRM Pipeline', 'Lead Prioritisation Rules', 'Conversion Dashboard']
+    : ['Performance Dashboard', 'Weekly Optimisation Routine'];
+
+  const topProblem = painPoints.length
+    ? painPoints.join(' + ')
+    : 'stable operations with room to scale';
+
+  const projectedClients = `${m.currentClients} -> ${m.newClients} clients/month`;
+  const projectedRevenue = `£${Math.round(m.currentRevenue).toLocaleString()} -> £${Math.round(m.currentRevenue + m.extraRevenue).toLocaleString()}/month`;
+  const projectedTime = `${Math.round(m.adminSavedHrs)} hrs/week saved`;
+
+  const problemEl = document.getElementById('diag-problem');
+  const reasonEl = document.getElementById('diag-reason');
+  const acqEl = document.getElementById('diag-acquisition');
+  const autoEl = document.getElementById('diag-automation');
+  const mgmtEl = document.getElementById('diag-management');
+  const outcomeEl = document.getElementById('diag-outcome');
+
+  if (!problemEl || !reasonEl || !acqEl || !autoEl || !mgmtEl || !outcomeEl) return;
+
+  problemEl.textContent = topProblem.charAt(0).toUpperCase() + topProblem.slice(1);
+  reasonEl.textContent = `Mapped from your current inputs: ${state.leads} leads/month, ${state.admin} admin hrs/week, ${state.followup}hr follow-up, ${state.conv}% conversion.`;
+  acqEl.textContent = acquisitionModules.join(', ');
+  autoEl.textContent = automationModules.join(', ');
+  mgmtEl.textContent = managementModules.join(', ');
+  outcomeEl.textContent = `${projectedTime}, ${projectedClients}, ${projectedRevenue}.`;
 }
 
 function hexToRgb(hex) {
