@@ -1551,6 +1551,351 @@ function renderError(err) {
   </div>
 </section>
 
+<!-- ══════════════════════════════════════════════════════════════════════
+     SERVICES SECTION — premium offer ladder, all aligned
+     Insert this AFTER section "/ 02 · What We Build" and BEFORE "/ 03 · Build Log"
+     ══════════════════════════════════════════════════════════════════════ -->
+
+<style>
+.services-section {
+  padding: 100px 0 80px;
+  position: relative;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.services-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.services-eyebrow {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(245,245,247,0.5);
+  margin-bottom: 14px;
+}
+.services-h2 {
+  font-family: "Saira Condensed", "Saira", system-ui, sans-serif;
+  font-weight: 900;
+  font-size: clamp(36px, 5.5vw, 56px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0 0 16px;
+  color: #f5f5f7;
+}
+.services-h2 .red { color: var(--red, #ff2a2a); font-style: italic; }
+.services-lede {
+  color: rgba(245,245,247,0.72);
+  font-size: 17px;
+  line-height: 1.55;
+  max-width: 720px;
+  margin: 0 0 56px;
+}
+.services-grid-top {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.services-grid-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.tier-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.tier-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255,42,42,0.3);
+  background: linear-gradient(180deg, rgba(255,42,42,0.04) 0%, rgba(255,255,255,0.01) 100%);
+}
+.tier-card.featured {
+  border-color: var(--red, #ff2a2a);
+  background: linear-gradient(180deg, rgba(255,42,42,0.08) 0%, rgba(255,42,42,0.02) 100%);
+}
+.tier-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--red, #ff2a2a);
+  color: #fff;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+.tier-name {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--red, #ff2a2a);
+  margin-bottom: 14px;
+}
+.tier-title {
+  font-family: "Saira Condensed", "Saira", sans-serif;
+  font-weight: 800;
+  font-size: 28px;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  margin: 0 0 16px;
+  color: #f5f5f7;
+}
+.tier-price {
+  font-family: "Saira Condensed", "Saira", sans-serif;
+  font-weight: 900;
+  font-size: 44px;
+  line-height: 1;
+  color: #f5f5f7;
+  margin-bottom: 6px;
+}
+.tier-price .unit { font-size: 18px; font-weight: 600; color: rgba(245,245,247,0.5); margin-left: 4px; }
+.tier-timeline {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  color: rgba(245,245,247,0.5);
+  margin-bottom: 22px;
+}
+.tier-outcome {
+  font-size: 15px;
+  line-height: 1.5;
+  color: rgba(245,245,247,0.85);
+  margin-bottom: 22px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.tier-outcome strong { color: #f5f5f7; }
+.tier-includes {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 28px;
+  flex: 1;
+}
+.tier-includes li {
+  position: relative;
+  padding: 6px 0 6px 24px;
+  font-size: 14px;
+  line-height: 1.45;
+  color: rgba(245,245,247,0.72);
+}
+.tier-includes li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--red, #ff2a2a);
+}
+.tier-guarantee {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: rgba(16, 185, 129, 0.85);
+  margin-bottom: 20px;
+  padding: 10px 12px;
+  background: rgba(16, 185, 129, 0.05);
+  border: 1px solid rgba(16, 185, 129, 0.18);
+  border-radius: 6px;
+}
+.tier-cta {
+  display: block;
+  text-align: center;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: #f5f5f7;
+  font-family: "Saira Condensed", "Saira", sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 16px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.tier-cta:hover { background: rgba(255,42,42,0.08); border-color: var(--red, #ff2a2a); }
+.tier-card.featured .tier-cta {
+  background: var(--red, #ff2a2a);
+  border-color: var(--red, #ff2a2a);
+  color: #fff;
+}
+.tier-card.featured .tier-cta:hover { background: #d11414; }
+
+@media (max-width: 880px) {
+  .services-grid-top, .services-grid-bottom { grid-template-columns: 1fr; }
+}
+</style>
+
+<section class="services-section" id="services">
+  <div class="services-inner">
+    <div class="services-eyebrow">/ 03 · THE LADDER</div>
+    <h2 class="services-h2">Five tiers. <span class="red">One operator.</span></h2>
+    <p class="services-lede">Five precise interventions. Each one engineered to deliver a measurable, premium outcome inside a fixed window. No retainers without ROI. No vague "consulting hours". No subscription bloat. You buy the result, you own the work.</p>
+
+    <div class="services-grid-top">
+
+      <!-- Tier 1 — £47 The X-Ray -->
+      <div class="tier-card">
+        <div class="tier-name">Tier 01 · The X-Ray</div>
+        <h3 class="tier-title">Conversion X-Ray</h3>
+        <div class="tier-price">£47<span class="unit">one-off</span></div>
+        <div class="tier-timeline">Delivered within 60 minutes</div>
+        <p class="tier-outcome">A complete line-by-line teardown of every leak in your funnel — with the rewrite for each one already written. <strong>Outcome:</strong> you can DIY every fix in under a week.</p>
+        <ul class="tier-includes">
+          <li>Full 10-factor audit of your page</li>
+          <li>Every leak identified, not just 3</li>
+          <li>Paste-ready rewrites for every weak headline, CTA, copy block</li>
+          <li>Niche benchmarks (where you sit vs top 25%)</li>
+          <li>Mobile-specific notes (where 40% of your traffic is leaking)</li>
+          <li>30-day priority fix roadmap, prioritised by revenue impact</li>
+        </ul>
+        <div class="tier-guarantee">◉ If the X-Ray doesn't pay for itself in 30 days — full refund.</div>
+        <a class="tier-cta" href="#audit-notify" onclick="notifyTier('xray', '£47')">Get the X-Ray →</a>
+      </div>
+
+      <!-- Tier 2 — £197 The Velocity Pack — FEATURED -->
+      <div class="tier-card featured">
+        <div class="tier-badge">Most chosen</div>
+        <div class="tier-name">Tier 02 · The Velocity Pack</div>
+        <h3 class="tier-title">Audit + Done-for-You Quick Wins</h3>
+        <div class="tier-price">£197<span class="unit">one-off</span></div>
+        <div class="tier-timeline">Audit in 1 hr · Fixes shipped in 24 hr</div>
+        <p class="tier-outcome">The X-Ray <em>plus</em> I personally install the three highest-impact fixes on your live site within 24 hours. <strong>Outcome:</strong> measurable conversion lift this week — without you lifting a finger.</p>
+        <ul class="tier-includes">
+          <li>Everything in the X-Ray</li>
+          <li>Top 3 Quick Wins implemented on your live site</li>
+          <li>Headline rewrite, CTA optimisation, trust signal placement</li>
+          <li>Mobile-specific tweaks</li>
+          <li>Before / after metrics tracking setup</li>
+          <li>14-day follow-up call to review the lift</li>
+        </ul>
+        <div class="tier-guarantee">◉ If conversion doesn't lift 10%+ in 30 days — I keep working free until it does.</div>
+        <a class="tier-cta" href="#audit-notify" onclick="notifyTier('velocity', '£197')">Ship the Velocity Pack →</a>
+      </div>
+
+      <!-- Tier 3 — £797 The Operator Build -->
+      <div class="tier-card">
+        <div class="tier-name">Tier 03 · The Operator Build</div>
+        <h3 class="tier-title">3D Conversion Rebuild</h3>
+        <div class="tier-price">£797<span class="unit">one-off</span></div>
+        <div class="tier-timeline">Live in 48 hours · Cortiez-style</div>
+        <p class="tier-outcome">A complete page rebuild on Framer with 3D scroll, conversion-first front-end, and the architecture of a top-25% page in your category. <strong>Outcome:</strong> a page that converts at 2-3x your current rate, owned by you forever.</p>
+        <ul class="tier-includes">
+          <li>Full audit + strategy session</li>
+          <li>Custom 3D scroll page on Framer (Cortiez-style aesthetic)</li>
+          <li>Conversion-first copy, top-of-funnel to CTA</li>
+          <li>Mobile-first build, &lt;2s load</li>
+          <li>Calendly + CRM wired day one</li>
+          <li>1 round of revisions · final deployment</li>
+        </ul>
+        <div class="tier-guarantee">◉ If the rebuild doesn't outconvert your old page in 30 days — I rebuild again, free.</div>
+        <a class="tier-cta" href="#audit-notify" onclick="notifyTier('rebuild', '£797')">Ship my Build →</a>
+      </div>
+
+    </div>
+
+    <div class="services-grid-bottom">
+
+      <!-- Tier 4 — £97/mo Operator Watch -->
+      <div class="tier-card">
+        <div class="tier-name">Tier 04 · Operator Watch</div>
+        <h3 class="tier-title">Monthly Conversion Intelligence</h3>
+        <div class="tier-price">£97<span class="unit">/ month</span></div>
+        <div class="tier-timeline">7-day free trial · cancel any time</div>
+        <p class="tier-outcome">Monthly auto-audit of every page you ship — homepage, landing pages, product pages, link-in-bio, ad creatives, new features. <strong>Outcome:</strong> leaks never go live. Your funnel compounds.</p>
+        <ul class="tier-includes">
+          <li>Auto-audit of every page in your domain, monthly</li>
+          <li>Audit of every new page or feature within 24h of launch</li>
+          <li>Audit of new content (sales pages, blog, ad creatives)</li>
+          <li>Quarterly 30-min strategy call with Joshua</li>
+          <li>Direct line via WhatsApp / email for fast questions</li>
+          <li>Cancel any time. No contracts.</li>
+        </ul>
+        <div class="tier-guarantee">◉ 7-day free trial. If it doesn't earn its monthly fee back in lift — cancel, no questions.</div>
+        <a class="tier-cta" href="#audit-notify" onclick="notifyTier('watch', '£97/mo')">Start the trial →</a>
+      </div>
+
+      <!-- Tier 5 — £1,997/mo Embedded Operator -->
+      <div class="tier-card">
+        <div class="tier-name">Tier 05 · Embedded Operator</div>
+        <h3 class="tier-title">Your Conversion Lead — Outsourced</h3>
+        <div class="tier-price">£1,997<span class="unit">/ month</span></div>
+        <div class="tier-timeline">3-month minimum · Slack-direct</div>
+        <p class="tier-outcome">I become your conversion lead. Audits run automatically when you ship. I implement every high-impact fix. Monthly metrics report. <strong>Outcome:</strong> every page you ship lives in the top 25% of your category from day one.</p>
+        <ul class="tier-includes">
+          <li>Everything in Operator Watch</li>
+          <li>Done-for-you implementation of every flagged fix</li>
+          <li>New page builds at cost of materials only (no markup)</li>
+          <li>Direct Slack channel · response within 4 working hours</li>
+          <li>Monthly metrics report with named priorities for next month</li>
+          <li>Quarterly strategy session (90 min)</li>
+          <li>3-month minimum, then month-to-month</li>
+        </ul>
+        <div class="tier-guarantee">◉ Replace your existing CRO consultant or part-time marketer. Most clients break even on hire-cost in month 1.</div>
+        <a class="tier-cta" href="#audit-notify" onclick="notifyTier('embed', '£1,997/mo')">Embed an operator →</a>
+      </div>
+
+    </div>
+
+    <!-- Notify form (placeholder until Stripe links are live) -->
+    <div id="audit-notify" style="margin-top: 56px; padding: 32px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-align: center;">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.16em; color: rgba(245,245,247,0.5); margin-bottom: 12px;">◉ TIERS OPENING THIS WEEK</div>
+      <div style="font-family: 'Saira Condensed', sans-serif; font-weight: 700; font-size: 22px; color: #f5f5f7; margin-bottom: 8px;" id="notify-headline">Drop your email — I'll send the link to the tier you picked the moment it's live.</div>
+      <div style="color: rgba(245,245,247,0.6); font-size: 14px; margin-bottom: 24px;">Or book a free 30-min call now and we lock your slot manually.</div>
+      <form onsubmit="submitNotify(event)" style="display: flex; gap: 12px; max-width: 560px; margin: 0 auto; flex-wrap: wrap;">
+        <input type="email" id="notify-email" placeholder="you@yourbusiness.com" required style="flex: 1; min-width: 240px; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1); color: #f5f5f7; padding: 14px 16px; border-radius: 8px; font-size: 15px; font-family: inherit; outline: none;" />
+        <button type="submit" style="background: var(--red, #ff2a2a); color: #fff; border: none; font-family: 'Saira Condensed', sans-serif; font-weight: 700; font-size: 15px; letter-spacing: 0.04em; text-transform: uppercase; padding: 14px 28px; border-radius: 8px; cursor: pointer;">Notify me →</button>
+      </form>
+      <div style="margin-top: 16px;">
+        <a href="https://calendly.com/thesaassin" style="color: rgba(245,245,247,0.6); font-size: 13px; text-decoration: underline;">Or book the free 30-min call instead →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+let selectedTier = null;
+function notifyTier(tier, price) {
+  selectedTier = tier;
+  const headline = document.getElementById('notify-headline');
+  if (headline) {
+    headline.textContent = `Drop your email — I'll send the ${tier.toUpperCase()} (${price}) link the moment it's live.`;
+  }
+  const target = document.getElementById('audit-notify');
+  if (target) target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  return false;
+}
+async function submitNotify(e) {
+  e.preventDefault();
+  const email = document.getElementById('notify-email').value;
+  // Send to the same n8n audit webhook so leads aggregate in one place
+  try {
+    await fetch('https://joshua8200.app.n8n.cloud/webhook/audit-engine', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ url: 'TIER_NOTIFY:' + (selectedTier || 'unspecified'), email: email })
+    });
+  } catch (err) {}
+  e.target.innerHTML = '<div style="color: #34d399; font-family: \'Saira Condensed\', sans-serif; font-size: 18px; font-weight: 700;">◉ Locked. I\'ll email you when ' + (selectedTier ? selectedTier.toUpperCase() : 'tiers') + ' opens.</div>';
+  return false;
+}
+</script>
+<!-- ══════════════════════════════════════════════════════════════════════
+     END SERVICES SECTION
+     ══════════════════════════════════════════════════════════════════════ -->
 <!-- ═══════════════ PROOF ═══════════════ -->
 <section id="proof">
   <div class="sec-head">
