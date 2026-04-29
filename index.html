@@ -1409,17 +1409,29 @@ function renderAudit(data) {
     </div>
 
     <div class="audit-cta-stack">
-      <a class="audit-cta primary" href="${cta.tier_1_full_audit?.link || '#'}">
-        <div class="audit-cta-label">${cta.tier_1_full_audit?.label || 'Get the full audit'}</div>
-        <div class="audit-cta-price">${cta.tier_1_full_audit?.price || ''}</div>
+      <a class="audit-cta primary" href="${cta.tier_1_xray?.link || '#'}" target="_blank">
+        <div class="audit-cta-label">${cta.tier_1_xray?.label || 'Get the X-Ray'}</div>
+        <div class="audit-cta-price">${cta.tier_1_xray?.price || ''}</div>
       </a>
-      <a class="audit-cta" href="${cta.book_call?.link || '#'}">
-        <div class="audit-cta-label">${cta.book_call?.label || 'Book a free 30-min call'}</div>
+      <a class="audit-cta" href="${cta.tier_2_velocity?.link || '#'}" target="_blank">
+        <div class="audit-cta-label">${cta.tier_2_velocity?.label || 'Velocity Pack'}</div>
+        <div class="audit-cta-price">${cta.tier_2_velocity?.price || ''}</div>
+      </a>
+      <a class="audit-cta" href="${cta.tier_3_build?.link || '#'}" target="_blank">
+        <div class="audit-cta-label">${cta.tier_3_build?.label || 'Operator Build'}</div>
+        <div class="audit-cta-price">${cta.tier_3_build?.price || ''}</div>
+      </a>
+      <a class="audit-cta" href="${cta.tier_4_watch?.link || '#'}" target="_blank">
+        <div class="audit-cta-label">${cta.tier_4_watch?.label || 'Operator Watch'}</div>
+        <div class="audit-cta-price">${cta.tier_4_watch?.price || ''}</div>
+      </a>
+      <a class="audit-cta" href="${cta.tier_5_embed?.link || '#'}" target="_blank">
+        <div class="audit-cta-label">${cta.tier_5_embed?.label || 'Embedded Operator'}</div>
+        <div class="audit-cta-price">${cta.tier_5_embed?.price || ''}</div>
+      </a>
+      <a class="audit-cta" href="${cta.book_call?.link || 'https://calendly.com/thesaassin'}" target="_blank">
+        <div class="audit-cta-label">${cta.book_call?.label || 'Or book a free 30-min call'}</div>
         <div class="audit-cta-price">Free. No pitch. The plan is yours either way.</div>
-      </a>
-      <a class="audit-cta" href="${cta.tier_3_full_rebuild?.link || '#'}">
-        <div class="audit-cta-label">${cta.tier_3_full_rebuild?.label || 'Have me install the fix'}</div>
-        <div class="audit-cta-price">${cta.tier_3_full_rebuild?.price || ''}</div>
       </a>
     </div>
   `;
