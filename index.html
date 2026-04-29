@@ -937,7 +937,7 @@
 }
 .audit-form {
   display: grid;
-  grid-template-columns: 1fr 1fr auto;
+  grid-template-columns: 1fr 1fr 1fr auto;
   gap: 12px;
   background: rgba(255,255,255,0.03);
   border: 1px solid rgba(255,255,255,0.08);
@@ -1268,6 +1268,7 @@
 
     <form class="audit-form" id="audit-form" onsubmit="return runAudit(event)">
       <input type="url" class="audit-input" name="url" placeholder="https://yourbusiness.com" required />
+      <input type="text" class="audit-input" name="name" placeholder="First name" required autocomplete="given-name" maxlength="40" />
       <input type="email" class="audit-input" name="email" placeholder="you@yourbusiness.com" required />
       <button class="audit-submit" type="submit" id="audit-btn">Audit my page →</button>
     </form>
@@ -1310,6 +1311,7 @@ async function runAudit(e) {
 
   const url = form.url.value.trim();
   const email = form.email.value.trim();
+  const name = (form.name && form.name.value || '').trim().split(' ')[0];
 
   btn.disabled = true;
   btn.textContent = 'Scanning...';
@@ -1321,7 +1323,7 @@ async function runAudit(e) {
     const res = await fetch(AUDIT_WEBHOOK, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ url, email })
+      body: JSON.stringify({ url, email, name })
     });
     const data = await res.json();
     renderAudit(data);
@@ -1908,6 +1910,7 @@ async function submitNotify(e) {
 <!-- ══════════════════════════════════════════════════════════════════════
      END SERVICES SECTION
      ══════════════════════════════════════════════════════════════════════ -->
+
 <!-- ═══════════════ PROOF ═══════════════ -->
 <section id="proof">
   <div class="sec-head">
