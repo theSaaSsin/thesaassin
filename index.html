@@ -890,6 +890,557 @@
   </div>
 </header>
 
+<!-- ══════════════════════════════════════════════════════════════════════
+     AUDIT ENGINE SECTION
+     Insert this BETWEEN the existing hero (after the "If you don't leave..."
+     audit-promise block) and BEFORE section "/ 01 · The Leak"
+     ══════════════════════════════════════════════════════════════════════ -->
+
+<style>
+.audit-section {
+  background: linear-gradient(180deg, rgba(255,42,42,0.04) 0%, rgba(10,10,15,0) 100%);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding: 80px 0 100px;
+  position: relative;
+  z-index: 2;
+}
+.audit-inner {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.audit-eyebrow {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--red, #ff2a2a);
+  margin-bottom: 14px;
+}
+.audit-h2 {
+  font-family: "Saira Condensed", "Saira", system-ui, -apple-system, sans-serif;
+  font-weight: 900;
+  font-size: clamp(36px, 6vw, 56px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0 0 16px;
+  color: #f5f5f7;
+}
+.audit-h2 .red { color: var(--red, #ff2a2a); font-style: italic; }
+.audit-lede {
+  color: rgba(245,245,247,0.72);
+  font-size: 17px;
+  line-height: 1.55;
+  max-width: 640px;
+  margin: 0 0 32px;
+}
+.audit-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 12px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 14px;
+}
+.audit-input {
+  background: rgba(0,0,0,0.4);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: #f5f5f7;
+  font-family: inherit;
+  font-size: 15px;
+  padding: 14px 16px;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.audit-input:focus { border-color: var(--red, #ff2a2a); }
+.audit-input::placeholder { color: rgba(245,245,247,0.36); }
+.audit-submit {
+  background: var(--red, #ff2a2a);
+  color: #fff;
+  border: none;
+  font-family: "Saira Condensed", "Saira", system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.05s;
+  white-space: nowrap;
+}
+.audit-submit:hover { background: #d11414; }
+.audit-submit:active { transform: scale(0.98); }
+.audit-submit:disabled { background: #555; cursor: not-allowed; }
+.audit-microcopy {
+  margin-top: 12px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: rgba(245,245,247,0.4);
+  letter-spacing: 0.04em;
+}
+.audit-microcopy .accent { color: var(--red, #ff2a2a); }
+
+/* Loading state */
+.audit-loading {
+  display: none;
+  margin-top: 32px;
+  padding: 32px;
+  background: rgba(255,42,42,0.04);
+  border: 1px solid rgba(255,42,42,0.2);
+  border-radius: 12px;
+  text-align: center;
+}
+.audit-loading.active { display: block; }
+.audit-loading-spinner {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  border: 3px solid rgba(255,42,42,0.2);
+  border-top-color: var(--red, #ff2a2a);
+  border-radius: 50%;
+  animation: audit-spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+@keyframes audit-spin { to { transform: rotate(360deg); } }
+.audit-loading-msg {
+  font-family: "Saira Condensed", "Saira", sans-serif;
+  font-size: 18px;
+  color: #f5f5f7;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.audit-loading-sub {
+  margin-top: 8px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  color: rgba(245,245,247,0.5);
+}
+
+/* Result panel */
+.audit-result {
+  display: none;
+  margin-top: 32px;
+}
+.audit-result.active { display: block; }
+.audit-result-header {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 24px;
+  align-items: center;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 28px;
+  margin-bottom: 24px;
+}
+.audit-score {
+  font-family: "Saira Condensed", "Saira", sans-serif;
+  font-weight: 900;
+  font-size: 84px;
+  line-height: 1;
+  color: var(--red, #ff2a2a);
+}
+.audit-score-out {
+  display: block;
+  font-size: 18px;
+  color: rgba(245,245,247,0.4);
+  margin-top: 4px;
+}
+.audit-summary {
+  font-family: inherit;
+  font-size: 17px;
+  color: rgba(245,245,247,0.85);
+  line-height: 1.5;
+}
+
+.audit-bars {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+.audit-bars-title {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: rgba(245,245,247,0.5);
+  margin-bottom: 16px;
+}
+.audit-bar-row {
+  display: grid;
+  grid-template-columns: 160px 1fr 50px;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+.audit-bar-label {
+  color: rgba(245,245,247,0.7);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+}
+.audit-bar-track {
+  height: 8px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.audit-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--red, #ff2a2a), #ff6363);
+  transition: width 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.audit-bar-fill.green { background: linear-gradient(90deg, #10b981, #34d399); }
+.audit-bar-fill.amber { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+.audit-bar-score {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  color: #f5f5f7;
+  text-align: right;
+}
+.audit-bar-score .leak-flag {
+  color: var(--red, #ff2a2a);
+  font-weight: 700;
+  margin-left: 6px;
+}
+
+.audit-leaks-title {
+  font-family: "Saira Condensed", "Saira", sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: -0.01em;
+  margin: 0 0 16px;
+  color: #f5f5f7;
+}
+.audit-leak {
+  background: rgba(255,42,42,0.06);
+  border: 1px solid rgba(255,42,42,0.25);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 12px;
+}
+.audit-leak-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.audit-leak-factor {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--red, #ff2a2a);
+}
+.audit-leak-impact {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  color: #34d399;
+}
+.audit-leak-text {
+  color: #f5f5f7;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.audit-tease {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 28px;
+  margin-top: 24px;
+  text-align: center;
+}
+.audit-tease-count {
+  font-family: "Saira Condensed", "Saira", sans-serif;
+  font-weight: 900;
+  font-size: 56px;
+  line-height: 1;
+  color: var(--red, #ff2a2a);
+  margin-bottom: 8px;
+}
+.audit-tease-label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(245,245,247,0.6);
+  margin-bottom: 20px;
+}
+.audit-tease-categories {
+  text-align: left;
+  margin: 16px auto 0;
+  max-width: 580px;
+  color: rgba(245,245,247,0.7);
+  font-size: 14px;
+  line-height: 1.6;
+}
+.audit-tease-categories div {
+  padding: 6px 0;
+  padding-left: 24px;
+  position: relative;
+}
+.audit-tease-categories div::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--red, #ff2a2a);
+}
+.audit-revenue {
+  margin-top: 24px;
+  padding: 20px 24px;
+  background: rgba(16, 185, 129, 0.06);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 8px;
+}
+.audit-revenue-label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(245,245,247,0.6);
+  margin-bottom: 4px;
+}
+.audit-revenue-amount {
+  font-family: "Saira Condensed", "Saira", sans-serif;
+  font-weight: 800;
+  font-size: 32px;
+  color: #34d399;
+}
+
+.audit-cta-stack {
+  margin-top: 32px;
+  display: grid;
+  gap: 12px;
+}
+.audit-cta {
+  display: block;
+  padding: 18px 24px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  text-decoration: none;
+  color: #f5f5f7;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.audit-cta:hover {
+  background: rgba(255,42,42,0.08);
+  border-color: var(--red, #ff2a2a);
+  transform: translateX(4px);
+}
+.audit-cta.primary {
+  background: var(--red, #ff2a2a);
+  border-color: var(--red, #ff2a2a);
+}
+.audit-cta.primary:hover { background: #d11414; }
+.audit-cta-label {
+  font-size: 16px;
+  font-weight: 600;
+}
+.audit-cta-price {
+  margin-top: 4px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  color: rgba(245,245,247,0.6);
+}
+.audit-cta.primary .audit-cta-price { color: rgba(255,255,255,0.85); }
+
+/* Mobile */
+@media (max-width: 720px) {
+  .audit-form { grid-template-columns: 1fr; }
+  .audit-result-header { grid-template-columns: 1fr; text-align: center; }
+  .audit-bar-row { grid-template-columns: 110px 1fr 40px; font-size: 11px; }
+  .audit-score { font-size: 64px; }
+}
+</style>
+
+<section class="audit-section" id="audit">
+  <div class="audit-inner">
+    <div class="audit-eyebrow">◉ FREE 60-SECOND AUDIT</div>
+    <h2 class="audit-h2">Find the leaks <span class="red">before they cost you another month.</span></h2>
+    <p class="audit-lede">Paste your URL. We'll scan your page across 10 conversion factors and surface 3 leaks you probably haven't noticed. Free. 60 seconds. Walk away with intel either way.</p>
+
+    <form class="audit-form" id="audit-form" onsubmit="return runAudit(event)">
+      <input type="url" class="audit-input" name="url" placeholder="https://yourbusiness.com" required />
+      <input type="email" class="audit-input" name="email" placeholder="you@yourbusiness.com" required />
+      <button class="audit-submit" type="submit" id="audit-btn">Audit my page →</button>
+    </form>
+    <div class="audit-microcopy"><span class="accent">●</span> Works with: landing pages, ecom product pages, Shopify, link-in-bio (Linktree, Stan, Carrd), service pages. Native IG/TikTok profiles need a screenshot — DM @thesaassin.</div>
+
+    <div class="audit-loading" id="audit-loading">
+      <div class="audit-loading-spinner"></div>
+      <div class="audit-loading-msg">Scanning your page across 10 conversion factors...</div>
+      <div class="audit-loading-sub">Typically takes 30-60 seconds. We're being thorough.</div>
+    </div>
+
+    <div class="audit-result" id="audit-result">
+      <!-- populated by JS -->
+    </div>
+  </div>
+</section>
+
+<script>
+const AUDIT_WEBHOOK = 'https://joshua8200.app.n8n.cloud/webhook/audit-engine';
+
+const FACTOR_LABELS = {
+  first_impression: 'First Impression',
+  value_proposition: 'Value Prop',
+  headline_strength: 'Headline',
+  trust_signals: 'Trust Signals',
+  cta_strength: 'CTA Strength',
+  friction_anxiety: 'Friction',
+  mobile_experience: 'Mobile',
+  visual_hierarchy: 'Hierarchy',
+  social_proof: 'Social Proof',
+  technical_ux: 'Technical/UX'
+};
+
+async function runAudit(e) {
+  e.preventDefault();
+  const form = document.getElementById('audit-form');
+  const btn = document.getElementById('audit-btn');
+  const loading = document.getElementById('audit-loading');
+  const result = document.getElementById('audit-result');
+
+  const url = form.url.value.trim();
+  const email = form.email.value.trim();
+
+  btn.disabled = true;
+  btn.textContent = 'Scanning...';
+  loading.classList.add('active');
+  result.classList.remove('active');
+  result.innerHTML = '';
+
+  try {
+    const res = await fetch(AUDIT_WEBHOOK, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ url, email })
+    });
+    const data = await res.json();
+    renderAudit(data);
+  } catch (err) {
+    renderError(err);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Audit my page →';
+    loading.classList.remove('active');
+  }
+  return false;
+}
+
+function renderAudit(data) {
+  const result = document.getElementById('audit-result');
+
+  // Handle scrape failure or error
+  if (data.error || (data.overall_score === 0 && data.summary_one_liner)) {
+    result.innerHTML = `
+      <div class="audit-leak">
+        <div class="audit-leak-text">${data.summary_one_liner || 'Could not scrape that page. Try a different URL or DM @thesaassin a screenshot.'}</div>
+      </div>
+      <div class="audit-cta-stack">
+        <a class="audit-cta" href="https://calendly.com/thesaassin">
+          <div class="audit-cta-label">Book a free call instead — bring a screenshot</div>
+          <div class="audit-cta-price">30 minutes. No pitch.</div>
+        </a>
+      </div>
+    `;
+    result.classList.add('active');
+    return;
+  }
+
+  const scoreColor = (s) => s >= 7 ? 'green' : s >= 4 ? 'amber' : '';
+  const flagLeak = (s) => s <= 3 ? '<span class="leak-flag">← LEAK</span>' : '';
+
+  const bars = Object.entries(data.factor_scores || {}).map(([k, v]) => `
+    <div class="audit-bar-row">
+      <div class="audit-bar-label">${FACTOR_LABELS[k] || k}</div>
+      <div class="audit-bar-track">
+        <div class="audit-bar-fill ${scoreColor(v)}" style="width: ${v * 10}%"></div>
+      </div>
+      <div class="audit-bar-score">${v}/10${flagLeak(v)}</div>
+    </div>
+  `).join('');
+
+  const leaks = (data.top_3_leaks_revealed || []).map(l => `
+    <div class="audit-leak">
+      <div class="audit-leak-meta">
+        <div class="audit-leak-factor">${l.factor}</div>
+        <div class="audit-leak-impact">${l.estimated_impact}</div>
+      </div>
+      <div class="audit-leak-text">${l.leak}</div>
+    </div>
+  `).join('');
+
+  const teases = (data.additional_leaks_categories_teased || []).map(c => `<div>${c}</div>`).join('');
+
+  const cta = data.cta_stack || {};
+
+  result.innerHTML = `
+    <div class="audit-result-header">
+      <div>
+        <div class="audit-score">${data.overall_score || 0}<span class="audit-score-out">/ 10</span></div>
+      </div>
+      <div class="audit-summary">${data.summary_one_liner || ''}</div>
+    </div>
+
+    <div class="audit-bars">
+      <div class="audit-bars-title">10-FACTOR BREAKDOWN</div>
+      ${bars}
+    </div>
+
+    <h3 class="audit-leaks-title">Three leaks you probably haven't noticed</h3>
+    ${leaks}
+
+    <div class="audit-tease">
+      <div class="audit-tease-count">+${data.additional_leaks_count || 0}</div>
+      <div class="audit-tease-label">More leaks found across your funnel</div>
+      <div class="audit-tease-categories">${teases}</div>
+      <div class="audit-revenue">
+        <div class="audit-revenue-label">Estimated combined impact if all fixed</div>
+        <div class="audit-revenue-amount">${data.estimated_revenue_impact_if_all_fixed || ''}</div>
+      </div>
+    </div>
+
+    <div class="audit-cta-stack">
+      <a class="audit-cta primary" href="${cta.tier_1_full_audit?.link || '#'}">
+        <div class="audit-cta-label">${cta.tier_1_full_audit?.label || 'Get the full audit'}</div>
+        <div class="audit-cta-price">${cta.tier_1_full_audit?.price || ''}</div>
+      </a>
+      <a class="audit-cta" href="${cta.book_call?.link || '#'}">
+        <div class="audit-cta-label">${cta.book_call?.label || 'Book a free 30-min call'}</div>
+        <div class="audit-cta-price">Free. No pitch. The plan is yours either way.</div>
+      </a>
+      <a class="audit-cta" href="${cta.tier_3_full_rebuild?.link || '#'}">
+        <div class="audit-cta-label">${cta.tier_3_full_rebuild?.label || 'Have me install the fix'}</div>
+        <div class="audit-cta-price">${cta.tier_3_full_rebuild?.price || ''}</div>
+      </a>
+    </div>
+  `;
+  result.classList.add('active');
+  result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function renderError(err) {
+  const result = document.getElementById('audit-result');
+  result.innerHTML = `
+    <div class="audit-leak">
+      <div class="audit-leak-text">Something glitched on our end. Try again, or DM @thesaassin and we'll audit by hand.</div>
+    </div>
+  `;
+  result.classList.add('active');
+}
+</script>
+<!-- ══════════════════════════════════════════════════════════════════════
+     END AUDIT ENGINE SECTION
+     ══════════════════════════════════════════════════════════════════════ -->
+
 <!-- ═══════════════ TOOLS STRIP ═══════════════ -->
 <section class="tools-strip" aria-label="Tools we deploy">
   <div class="container tools-inner">
