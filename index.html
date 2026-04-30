@@ -799,6 +799,8 @@
     .proof-wrap::before, .proof-wrap::after { left: 24px; right: 24px; }
     footer { grid-template-columns: 1fr; gap: 32px; padding: 40px 20px; }
     .foot-meta { flex-direction: column; gap: 10px; text-align: center; }
+    /* MOBILE HERO FIX */
+    .hero { min-height: auto; padding: 80px 20px 40px; justify-content: flex-start; }
     .cta-section { padding: 60px 24px; }
     .hero-cta-row { width: 100%; }
     .hero-cta-row .btn { flex: 1; justify-content: center; }
@@ -979,6 +981,10 @@
 }
 </script>
   
+<script>
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  window.addEventListener('DOMContentLoaded', function(){ if (!window.location.hash) window.scrollTo(0, 0); });
+</script>
 </head>
 <body>
 
