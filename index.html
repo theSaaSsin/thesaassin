@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-T6VLBCH2');</script>
+<!-- End Google Tag Manager -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TheSaaSsin — We build the system that replaces your marketing team</title>
@@ -488,17 +495,14 @@
     gap: 8px;
     line-height: 1;
   }
-  .tool-tag img, .tool-tag svg {
-    width: 18px;
-    height: 18px;
+  .tool-tag img {
+    width: 16px;
+    height: 16px;
     object-fit: contain;
-    opacity: 0.78;
-    filter: brightness(0) invert(1);
+    opacity: 0.75;
     transition: opacity 0.25s ease;
     flex-shrink: 0;
   }
-  .tool-tag svg { filter: none; color: #f5f5f7; opacity: 0.78; }
-  .tool-tag:hover svg { opacity: 1; }
   .tool-tag:hover img { opacity: 1; }
   .tool-tag:hover {
     border-color: var(--red);
@@ -815,194 +819,24 @@
     .proof-wrap::before, .proof-wrap::after { left: 24px; right: 24px; }
     footer { grid-template-columns: 1fr; gap: 32px; padding: 40px 20px; }
     .foot-meta { flex-direction: column; gap: 10px; text-align: center; }
-    /* MOBILE HERO FIX */
+    /* MOBILE HERO FIX: prevent loads-halfway-down bug */
     .hero { min-height: auto; padding: 80px 20px 40px; justify-content: flex-start; }
     .cta-section { padding: 60px 24px; }
     .hero-cta-row { width: 100%; }
     .hero-cta-row .btn { flex: 1; justify-content: center; }
   }
 </style>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "@id": "https://thesaassin.com/#org",
-      "name": "TheSaaSsin",
-      "alternateName": ["The SaaSsin", "TheSaaSsin Agency"],
-      "url": "https://thesaassin.com",
-      "logo": "https://thesaassin.com/logo-stripe.png",
-      "founder": { "@id": "https://thesaassin.com/#founder" },
-      "areaServed": "United Kingdom",
-      "slogan": "We build the system that replaces your marketing team",
-      "description": "UK conversion-rate operator that rebuilds leaking landing pages, social profiles, and lead funnels for businesses doing £100k-£3M revenue.",
-      "address": { "@type": "PostalAddress", "addressCountry": "GB" },
-      "knowsAbout": [
-        "Conversion rate optimization",
-        "Landing page design",
-        "B2B SaaS marketing",
-        "Lead generation",
-        "CRM setup",
-        "Email sequences",
-        "Social media audits",
-        "Funnel optimization",
-        "Ecommerce conversion",
-        "Trades business marketing"
-      ]
-    },
-    {
-      "@type": "Person",
-      "@id": "https://thesaassin.com/#founder",
-      "name": "Joshua",
-      "jobTitle": "Founder & Operator",
-      "worksFor": { "@id": "https://thesaassin.com/#org" },
-      "knowsAbout": [
-        "Conversion rate optimization",
-        "Landing page rebuilds",
-        "Lead generation systems",
-        "n8n workflow automation",
-        "Email marketing"
-      ]
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://thesaassin.com/#website",
-      "url": "https://thesaassin.com",
-      "name": "TheSaaSsin",
-      "description": "UK conversion-rate operator. Free 60-second audit. Service tiers from £47.",
-      "publisher": { "@id": "https://thesaassin.com/#org" }
-    },
-    {
-      "@type": "Service",
-      "name": "X-Ray Conversion Audit",
-      "serviceType": "Conversion Rate Optimization Audit",
-      "provider": { "@id": "https://thesaassin.com/#org" },
-      "areaServed": "United Kingdom",
-      "description": "Single-page conversion audit delivered as a PDF within 48 hours, including prioritised leaks and paste-ready rewrites for every weak element.",
-      "offers": {
-        "@type": "Offer",
-        "price": "47",
-        "priceCurrency": "GBP",
-        "url": "https://buy.stripe.com/fZu9AMf7g2dL93P4hgcAo08",
-        "availability": "https://schema.org/InStock"
-      }
-    },
-    {
-      "@type": "Service",
-      "name": "Velocity Audit",
-      "serviceType": "Conversion Rate Optimization Audit (Expedited)",
-      "provider": { "@id": "https://thesaassin.com/#org" },
-      "description": "24-hour conversion audit with PDF deliverable plus 30-minute strategy call.",
-      "offers": {
-        "@type": "Offer",
-        "price": "197",
-        "priceCurrency": "GBP",
-        "url": "https://buy.stripe.com/00wbIU3oy5pX5RD9BAcAo0a"
-      }
-    },
-    {
-      "@type": "Service",
-      "name": "Operator Build — Full Conversion Page Rebuild",
-      "serviceType": "Landing Page Rebuild",
-      "provider": { "@id": "https://thesaassin.com/#org" },
-      "description": "Done-for-you landing page rebuild in 7-14 days. Includes copy, design, animations, mobile optimisation, one revision round.",
-      "offers": {
-        "@type": "Offer",
-        "price": "797",
-        "priceCurrency": "GBP",
-        "url": "https://buy.stripe.com/28EdR25wG05Dgwh9BAcAo0c"
-      }
-    },
-    {
-      "@type": "Service",
-      "name": "Operator Watch Retainer",
-      "serviceType": "Conversion Optimization Retainer",
-      "provider": { "@id": "https://thesaassin.com/#org" },
-      "description": "Monthly retainer: 1 audit, up to 3 paste-ready rewrites, 1 strategy call, Slack/email priority response.",
-      "offers": {
-        "@type": "Offer",
-        "price": "97",
-        "priceCurrency": "GBP",
-        "priceSpecification": {
-          "@type": "UnitPriceSpecification",
-          "billingDuration": "P1M",
-          "billingIncrement": 1,
-          "unitCode": "MON"
-        },
-        "url": "https://buy.stripe.com/9B6aEQ1gq7y593PbJIcAo07"
-      }
-    },
-    {
-      "@type": "Service",
-      "name": "Embedded Operator — Fractional Ops Lead",
-      "serviceType": "Fractional Operations Service",
-      "provider": { "@id": "https://thesaassin.com/#org" },
-      "description": "Embedded fractional operations lead. Weekly audits, full content/copy ops, n8n automation, lead-magnet builds.",
-      "offers": {
-        "@type": "Offer",
-        "price": "1997",
-        "priceCurrency": "GBP",
-        "priceSpecification": {
-          "@type": "UnitPriceSpecification",
-          "billingDuration": "P1M",
-          "billingIncrement": 1,
-          "unitCode": "MON"
-        },
-        "url": "https://buy.stripe.com/14A5kwaR0aKh5RDaFEcAo09"
-      }
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://thesaassin.com/#faq",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "What does TheSaaSsin actually do?",
-          "acceptedAnswer": { "@type": "Answer", "text": "TheSaaSsin runs end-to-end conversion intelligence for UK businesses doing £100k-£3M revenue. We rebuild leaking landing pages, audit social funnels, set up CRM and lead-capture systems, and write paste-ready copy. Five service tiers from £47 (one-off audit) to £1,997/mo (embedded fractional ops lead). Founded and operated by Joshua." }
-        },
-        {
-          "@type": "Question",
-          "name": "Is TheSaaSsin worth it for UK trades businesses?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Yes — UK trades is a primary niche. Businesses with 4.5+ star reviews but converting under 2% on their landing page typically see the largest lift. Real example: 0.8% to 4.1% conversion in 14 days for a UK electrician with 4.9★ and 127 reviews." }
-        },
-        {
-          "@type": "Question",
-          "name": "How long does an audit take?",
-          "acceptedAnswer": { "@type": "Answer", "text": "X-Ray audit: 48 hours. Velocity audit: 24 hours. Free 60-second AI audit (instant) reveals 3 leaks at thesaassin.com/#audit — used to qualify into the paid tiers." }
-        },
-        {
-          "@type": "Question",
-          "name": "Can TheSaaSsin handle ecommerce conversion?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Yes — ecommerce stores under £2M/year are a primary niche. We audit product pages, hero sections, trust blocks, mobile UX, and checkout friction. Best for beauty, apparel, food/drink, supplements, home goods, and DTC verticals." }
-        },
-        {
-          "@type": "Question",
-          "name": "Does TheSaaSsin work for SaaS landing pages?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Yes — UK B2B SaaS founders doing £100k-£3M ARR are a core niche. Common audit findings: weak hero hook, missing social proof above the fold, ambiguous pricing page, broken signup-to-onboarding bridge." }
-        },
-        {
-          "@type": "Question",
-          "name": "What's the difference between TheSaaSsin and a CRO agency?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Same depth at 10% of the price. £797 Operator Build delivers what mid-tier agencies charge £5-8k for. £97/mo retainer delivers what £4k/mo CRO agencies charge for. Cuts the 4-6 week procurement cycle. Stripe-direct, no contracts." }
-        },
-        {
-          "@type": "Question",
-          "name": "Can I get a refund if the audit isn't useful?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Yes. If the X-Ray (£47) doesn't surface at least 5 specific leaks, we refund. If the Operator Build (£797) doesn't deliver in 14 days, we refund." }
-        }
-      ]
-    }
-  ]
-}
-</script>
-  
 <script>
+  // Mobile fix: disable browser scroll restoration + force top on load (no hash)
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
   window.addEventListener('DOMContentLoaded', function(){ if (!window.location.hash) window.scrollTo(0, 0); });
 </script>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T6VLBCH2"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
 <!-- Ambient matrix background -->
 <canvas id="matrix-bg"></canvas>
@@ -1657,20 +1491,20 @@ function renderError(err) {
   <div class="container tools-inner">
     <p class="tools-label">Built with — and what we install for clients</p>
     <div class="tools-grid">
-      <span class="tool-tag" title="n8n"><img src="https://cdn.jsdelivr.net/npm/simple-icons@13/icons/n8n.svg" alt="" loading="lazy" /><span>n8n</span></span>
-      <span class="tool-tag" title="Cloudflare"><img src="https://cdn.jsdelivr.net/npm/simple-icons@13/icons/cloudflare.svg" alt="" loading="lazy" /><span>Cloudflare</span></span>
-      <span class="tool-tag" title="Supabase"><img src="https://cdn.jsdelivr.net/npm/simple-icons@13/icons/supabase.svg" alt="" loading="lazy" /><span>Supabase</span></span>
-      <span class="tool-tag" title="Stripe"><img src="https://cdn.jsdelivr.net/npm/simple-icons@13/icons/stripe.svg" alt="" loading="lazy" /><span>Stripe</span></span>
-      <span class="tool-tag" title="Notion"><img src="https://cdn.jsdelivr.net/npm/simple-icons@13/icons/notion.svg" alt="" loading="lazy" /><span>Notion</span></span>
-      <span class="tool-tag" title="Apollo"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L1 22h22L12 2zm0 4.5L19.5 20H4.5L12 6.5z"/><circle cx="12" cy="15" r="2"/></svg><span>Apollo</span></span>
-      <span class="tool-tag" title="Claude"><img src="https://cdn.jsdelivr.net/npm/simple-icons@13/icons/claude.svg" alt="" loading="lazy" /><span>Claude</span></span>
-      <span class="tool-tag" title="Gemini"><img src="https://cdn.jsdelivr.net/npm/simple-icons@13/icons/googlegemini.svg" alt="" loading="lazy" /><span>Gemini</span></span>
-      <span class="tool-tag" title="OpenAI"><img src="https://cdn.jsdelivr.net/npm/simple-icons@13/icons/openai.svg" alt="" loading="lazy" /><span>OpenAI</span></span>
-      <span class="tool-tag" title="Replicate"><img src="https://cdn.jsdelivr.net/npm/simple-icons@13/icons/replicate.svg" alt="" loading="lazy" /><span>Replicate</span></span>
-      <span class="tool-tag" title="Calendly"><img src="https://cdn.jsdelivr.net/npm/simple-icons@13/icons/calendly.svg" alt="" loading="lazy" /><span>Calendly</span></span>
-      <span class="tool-tag" title="Resend"><img src="https://cdn.jsdelivr.net/npm/simple-icons@13/icons/resend.svg" alt="" loading="lazy" /><span>Resend</span></span>
-      <span class="tool-tag" title="HubSpot"><img src="https://cdn.jsdelivr.net/npm/simple-icons@13/icons/hubspot.svg" alt="" loading="lazy" /><span>HubSpot</span></span>
-      <span class="tool-tag" title="Twilio"><img src="https://cdn.jsdelivr.net/npm/simple-icons@13/icons/twilio.svg" alt="" loading="lazy" /><span>Twilio</span></span>
+      <span class="tool-tag" title="n8n"><img src="https://cdn.simpleicons.org/n8n/white" alt="" loading="lazy" /><span>n8n</span></span>
+      <span class="tool-tag" title="Cloudflare"><img src="https://cdn.simpleicons.org/cloudflare/white" alt="" loading="lazy" /><span>Cloudflare</span></span>
+      <span class="tool-tag" title="Supabase"><img src="https://cdn.simpleicons.org/supabase/white" alt="" loading="lazy" /><span>Supabase</span></span>
+      <span class="tool-tag" title="Stripe"><img src="https://cdn.simpleicons.org/stripe/white" alt="" loading="lazy" /><span>Stripe</span></span>
+      <span class="tool-tag" title="Notion"><img src="https://cdn.simpleicons.org/notion/white" alt="" loading="lazy" /><span>Notion</span></span>
+      <span class="tool-tag" title="Apollo"><span>Apollo</span></span>
+      <span class="tool-tag" title="Claude"><img src="https://cdn.simpleicons.org/claude/white" alt="" loading="lazy" /><span>Claude</span></span>
+      <span class="tool-tag" title="Gemini"><img src="https://cdn.simpleicons.org/googlegemini/white" alt="" loading="lazy" /><span>Gemini</span></span>
+      <span class="tool-tag" title="OpenAI"><img src="https://cdn.simpleicons.org/openai/white" alt="" loading="lazy" /><span>OpenAI</span></span>
+      <span class="tool-tag" title="Replicate"><img src="https://cdn.simpleicons.org/replicate/white" alt="" loading="lazy" /><span>Replicate</span></span>
+      <span class="tool-tag" title="Calendly"><img src="https://cdn.simpleicons.org/calendly/white" alt="" loading="lazy" /><span>Calendly</span></span>
+      <span class="tool-tag" title="Resend"><img src="https://cdn.simpleicons.org/resend/white" alt="" loading="lazy" /><span>Resend</span></span>
+      <span class="tool-tag" title="HubSpot"><img src="https://cdn.simpleicons.org/hubspot/white" alt="" loading="lazy" /><span>HubSpot</span></span>
+      <span class="tool-tag" title="Twilio"><img src="https://cdn.simpleicons.org/twilio/white" alt="" loading="lazy" /><span>Twilio</span></span>
     </div>
   </div>
 </section>
@@ -2529,7 +2363,7 @@ async function submitNotify(e) {
         const full = names.of(region);
         if (full) country = full.toUpperCase();
       }
-      el.textContent = 'UK';
+      el.textContent = country || region || 'UK';
     } catch (e) {
       // Silent fallback — stays 'UK' if anything errors
     }
@@ -2642,25 +2476,6 @@ async function submitNotify(e) {
   --chat--input--text-color: #f5f5f7;
   --chat--input--border: rgba(255,255,255,0.08);
 }
-/* Chief Operator brand override — kill cheap-looking n8n defaults */
-.n8n-chat .chat-window-wrapper, .n8n-chat .chat-window { background: #0a0a0f !important; border: 1px solid rgba(255,42,42,0.25) !important; box-shadow: 0 24px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,42,42,0.12) !important; }
-.n8n-chat .chat-header { border-bottom: none !important; padding: 18px 20px !important; background: transparent !important; }
-.n8n-chat .chat-window-wrapper, .n8n-chat .chat-window, .n8n-chat .chat-layout, .n8n-chat .chat-wrapper { background: #0a0a0f !important; }
-.n8n-chat .chat-body, .n8n-chat .chat-messages-list { background: transparent !important; }
-.n8n-chat .chat-footer, .n8n-chat .chat-inputs { background: transparent !important; border-top: 1px solid rgba(255,42,42,0.10) !important; }
-.n8n-chat .chat-heading h1, .n8n-chat .chat-heading { font-family: 'Saira Condensed', 'Arial Narrow', sans-serif !important; font-weight: 800 !important; letter-spacing: -0.01em !important; }
-.n8n-chat .chat-body { background: #0a0a0f !important; }
-.n8n-chat .chat-message-from-bot { background: #15151c !important; border: 1px solid rgba(255,255,255,0.06) !important; border-radius: 10px !important; padding: 12px 14px !important; }
-.n8n-chat .chat-message-from-user { background: #ff2a2a !important; color: #fff !important; border-radius: 10px !important; }
-.n8n-chat .chat-footer, .n8n-chat .chat-inputs { background: #0a0a0f !important; border-top: 1px solid rgba(255,42,42,0.15) !important; padding: 14px !important; }
-.n8n-chat .chat-inputs textarea { background: #15151c !important; color: #f5f5f7 !important; border: 1px solid rgba(255,255,255,0.08) !important; border-radius: 8px !important; padding: 12px 14px !important; font-family: inherit !important; font-size: 14px !important; resize: none !important; }
-.n8n-chat .chat-inputs textarea:focus { border-color: #ff2a2a !important; box-shadow: 0 0 0 3px rgba(255,42,42,0.15) !important; outline: none !important; }
-.n8n-chat .chat-inputs textarea::placeholder { color: rgba(245,245,247,0.35) !important; }
-.n8n-chat .chat-inputs textarea::-webkit-scrollbar { width: 0 !important; display: none !important; }
-.n8n-chat .chat-input-send-button { background: #ff2a2a !important; color: #fff !important; border: none !important; border-radius: 8px !important; width: 40px !important; height: 40px !important; display: flex !important; align-items: center !important; justify-content: center !important; transition: all 0.2s ease !important; }
-.n8n-chat .chat-input-send-button:hover { background: #d11414 !important; transform: translateY(-1px) !important; }
-.n8n-chat .chat-input-send-button svg { fill: #fff !important; color: #fff !important; width: 18px !important; height: 18px !important; }
-.n8n-chat .chat-window-toggle { background: #ff2a2a !important; box-shadow: 0 8px 24px rgba(255,42,42,0.4) !important; }
 </style>
 <script type="module">
   import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
