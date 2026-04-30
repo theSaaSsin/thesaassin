@@ -483,7 +483,20 @@
     letter-spacing: 0.04em;
     transition: all 0.25s ease;
     white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    line-height: 1;
   }
+  .tool-tag img {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+    opacity: 0.75;
+    transition: opacity 0.25s ease;
+    flex-shrink: 0;
+  }
+  .tool-tag:hover img { opacity: 1; }
   .tool-tag:hover {
     border-color: var(--red);
     color: var(--text);
@@ -1641,18 +1654,20 @@ function renderError(err) {
   <div class="container tools-inner">
     <p class="tools-label">Built with — and what we install for clients</p>
     <div class="tools-grid">
-      <span class="tool-tag">n8n</span>
-      <span class="tool-tag">Cloudflare</span>
-      <span class="tool-tag">Supabase</span>
-      <span class="tool-tag">Stripe</span>
-      <span class="tool-tag">Notion</span>
-      <span class="tool-tag">Apollo</span>
-      <span class="tool-tag">Claude · Gemini · GPT</span>
-      <span class="tool-tag">Replicate</span>
-      <span class="tool-tag">Calendly</span>
-      <span class="tool-tag">Resend</span>
-      <span class="tool-tag">HubSpot</span>
-      <span class="tool-tag">Twilio</span>
+      <span class="tool-tag" title="n8n"><img src="https://cdn.simpleicons.org/n8n/white" alt="" loading="lazy" /><span>n8n</span></span>
+      <span class="tool-tag" title="Cloudflare"><img src="https://cdn.simpleicons.org/cloudflare/white" alt="" loading="lazy" /><span>Cloudflare</span></span>
+      <span class="tool-tag" title="Supabase"><img src="https://cdn.simpleicons.org/supabase/white" alt="" loading="lazy" /><span>Supabase</span></span>
+      <span class="tool-tag" title="Stripe"><img src="https://cdn.simpleicons.org/stripe/white" alt="" loading="lazy" /><span>Stripe</span></span>
+      <span class="tool-tag" title="Notion"><img src="https://cdn.simpleicons.org/notion/white" alt="" loading="lazy" /><span>Notion</span></span>
+      <span class="tool-tag" title="Apollo"><span>Apollo</span></span>
+      <span class="tool-tag" title="Claude"><img src="https://cdn.simpleicons.org/claude/white" alt="" loading="lazy" /><span>Claude</span></span>
+      <span class="tool-tag" title="Gemini"><img src="https://cdn.simpleicons.org/googlegemini/white" alt="" loading="lazy" /><span>Gemini</span></span>
+      <span class="tool-tag" title="OpenAI"><img src="https://cdn.simpleicons.org/openai/white" alt="" loading="lazy" /><span>OpenAI</span></span>
+      <span class="tool-tag" title="Replicate"><img src="https://cdn.simpleicons.org/replicate/white" alt="" loading="lazy" /><span>Replicate</span></span>
+      <span class="tool-tag" title="Calendly"><img src="https://cdn.simpleicons.org/calendly/white" alt="" loading="lazy" /><span>Calendly</span></span>
+      <span class="tool-tag" title="Resend"><img src="https://cdn.simpleicons.org/resend/white" alt="" loading="lazy" /><span>Resend</span></span>
+      <span class="tool-tag" title="HubSpot"><img src="https://cdn.simpleicons.org/hubspot/white" alt="" loading="lazy" /><span>HubSpot</span></span>
+      <span class="tool-tag" title="Twilio"><img src="https://cdn.simpleicons.org/twilio/white" alt="" loading="lazy" /><span>Twilio</span></span>
     </div>
   </div>
 </section>
