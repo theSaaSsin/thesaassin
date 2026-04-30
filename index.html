@@ -2642,6 +2642,22 @@ async function submitNotify(e) {
   --chat--input--text-color: #f5f5f7;
   --chat--input--border: rgba(255,255,255,0.08);
 }
+/* Chief Operator brand override — kill cheap-looking n8n defaults */
+.n8n-chat .chat-window-wrapper, .n8n-chat .chat-window { background: #0a0a0f !important; border: 1px solid rgba(255,42,42,0.25) !important; box-shadow: 0 24px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,42,42,0.12) !important; }
+.n8n-chat .chat-header { border-bottom: 1px solid rgba(255,255,255,0.06) !important; padding: 18px 20px !important; }
+.n8n-chat .chat-heading h1, .n8n-chat .chat-heading { font-family: 'Saira Condensed', 'Arial Narrow', sans-serif !important; font-weight: 800 !important; letter-spacing: -0.01em !important; }
+.n8n-chat .chat-body { background: #0a0a0f !important; }
+.n8n-chat .chat-message-from-bot { background: #15151c !important; border: 1px solid rgba(255,255,255,0.06) !important; border-radius: 10px !important; padding: 12px 14px !important; }
+.n8n-chat .chat-message-from-user { background: #ff2a2a !important; color: #fff !important; border-radius: 10px !important; }
+.n8n-chat .chat-footer, .n8n-chat .chat-inputs { background: #0a0a0f !important; border-top: 1px solid rgba(255,42,42,0.15) !important; padding: 14px !important; }
+.n8n-chat .chat-inputs textarea { background: #15151c !important; color: #f5f5f7 !important; border: 1px solid rgba(255,255,255,0.08) !important; border-radius: 8px !important; padding: 12px 14px !important; font-family: inherit !important; font-size: 14px !important; resize: none !important; }
+.n8n-chat .chat-inputs textarea:focus { border-color: #ff2a2a !important; box-shadow: 0 0 0 3px rgba(255,42,42,0.15) !important; outline: none !important; }
+.n8n-chat .chat-inputs textarea::placeholder { color: rgba(245,245,247,0.35) !important; }
+.n8n-chat .chat-inputs textarea::-webkit-scrollbar { width: 0 !important; display: none !important; }
+.n8n-chat .chat-input-send-button { background: #ff2a2a !important; color: #fff !important; border: none !important; border-radius: 8px !important; width: 40px !important; height: 40px !important; display: flex !important; align-items: center !important; justify-content: center !important; transition: all 0.2s ease !important; }
+.n8n-chat .chat-input-send-button:hover { background: #d11414 !important; transform: translateY(-1px) !important; }
+.n8n-chat .chat-input-send-button svg { fill: #fff !important; color: #fff !important; width: 18px !important; height: 18px !important; }
+.n8n-chat .chat-window-toggle { background: #ff2a2a !important; box-shadow: 0 8px 24px rgba(255,42,42,0.4) !important; }
 </style>
 <script type="module">
   import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
