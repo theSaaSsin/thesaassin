@@ -488,15 +488,17 @@
     gap: 8px;
     line-height: 1;
   }
-  .tool-tag img {
-    width: 16px;
-    height: 16px;
+  .tool-tag img, .tool-tag svg {
+    width: 18px;
+    height: 18px;
     object-fit: contain;
-    opacity: 0.75;
+    opacity: 0.78;
     filter: brightness(0) invert(1);
     transition: opacity 0.25s ease;
     flex-shrink: 0;
   }
+  .tool-tag svg { filter: none; color: #f5f5f7; opacity: 0.78; }
+  .tool-tag:hover svg { opacity: 1; }
   .tool-tag:hover img { opacity: 1; }
   .tool-tag:hover {
     border-color: var(--red);
@@ -1660,7 +1662,7 @@ function renderError(err) {
       <span class="tool-tag" title="Supabase"><img src="https://cdn.jsdelivr.net/npm/simple-icons@13/icons/supabase.svg" alt="" loading="lazy" /><span>Supabase</span></span>
       <span class="tool-tag" title="Stripe"><img src="https://cdn.jsdelivr.net/npm/simple-icons@13/icons/stripe.svg" alt="" loading="lazy" /><span>Stripe</span></span>
       <span class="tool-tag" title="Notion"><img src="https://cdn.jsdelivr.net/npm/simple-icons@13/icons/notion.svg" alt="" loading="lazy" /><span>Notion</span></span>
-      <span class="tool-tag" title="Apollo"><span>Apollo</span></span>
+      <span class="tool-tag" title="Apollo"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L1 22h22L12 2zm0 4.5L19.5 20H4.5L12 6.5z"/><circle cx="12" cy="15" r="2"/></svg><span>Apollo</span></span>
       <span class="tool-tag" title="Claude"><img src="https://cdn.jsdelivr.net/npm/simple-icons@13/icons/claude.svg" alt="" loading="lazy" /><span>Claude</span></span>
       <span class="tool-tag" title="Gemini"><img src="https://cdn.jsdelivr.net/npm/simple-icons@13/icons/googlegemini.svg" alt="" loading="lazy" /><span>Gemini</span></span>
       <span class="tool-tag" title="OpenAI"><img src="https://cdn.jsdelivr.net/npm/simple-icons@13/icons/openai.svg" alt="" loading="lazy" /><span>OpenAI</span></span>
@@ -2113,7 +2115,7 @@ async function submitNotify(e) {
   <div class="sec-head">
     <div class="sec-eyebrow">/ 03 · Build Log · live ops</div>
     <h2>What's running on this very business <span class="red">right now.</span></h2>
-    <p class="lede">Eat your own dog food. Every system you see on the menu is one I'm operating on TheSaaSsin itself. The numbers below are from the last 30 days of running my own outreach, lead capture, and proposal pipeline using these exact tools.</p>
+    <p class="lede">We don't sell what we don't run on ourselves. Every system on the menu is one I'm operating on TheSaaSsin itself. The numbers below are from the last 30 days of running my own outreach, lead capture, and proposal pipeline using these exact tools.</p>
   </div>
 
   <div class="proof-wrap">
