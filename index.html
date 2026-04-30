@@ -2529,7 +2529,7 @@ async function submitNotify(e) {
         const full = names.of(region);
         if (full) country = full.toUpperCase();
       }
-      el.textContent = country || region || 'UK';
+      el.textContent = 'UK';
     } catch (e) {
       // Silent fallback — stays 'UK' if anything errors
     }
