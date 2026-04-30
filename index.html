@@ -2644,7 +2644,10 @@ async function submitNotify(e) {
 }
 /* Chief Operator brand override — kill cheap-looking n8n defaults */
 .n8n-chat .chat-window-wrapper, .n8n-chat .chat-window { background: #0a0a0f !important; border: 1px solid rgba(255,42,42,0.25) !important; box-shadow: 0 24px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,42,42,0.12) !important; }
-.n8n-chat .chat-header { border-bottom: 1px solid rgba(255,255,255,0.06) !important; padding: 18px 20px !important; }
+.n8n-chat .chat-header { border-bottom: none !important; padding: 18px 20px !important; background: transparent !important; }
+.n8n-chat .chat-window-wrapper, .n8n-chat .chat-window, .n8n-chat .chat-layout, .n8n-chat .chat-wrapper { background: #0a0a0f !important; }
+.n8n-chat .chat-body, .n8n-chat .chat-messages-list { background: transparent !important; }
+.n8n-chat .chat-footer, .n8n-chat .chat-inputs { background: transparent !important; border-top: 1px solid rgba(255,42,42,0.10) !important; }
 .n8n-chat .chat-heading h1, .n8n-chat .chat-heading { font-family: 'Saira Condensed', 'Arial Narrow', sans-serif !important; font-weight: 800 !important; letter-spacing: -0.01em !important; }
 .n8n-chat .chat-body { background: #0a0a0f !important; }
 .n8n-chat .chat-message-from-bot { background: #15151c !important; border: 1px solid rgba(255,255,255,0.06) !important; border-radius: 10px !important; padding: 12px 14px !important; }
